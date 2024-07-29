@@ -1,8 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { Input } from "../ui/input";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaRegStar, FaUserCircle } from "react-icons/fa";
 import MobileNav from "./MobileNav";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { FiUser } from "react-icons/fi";
+import { RiShoppingBag3Line } from "react-icons/ri";
+import { MdOutlineCancel } from "react-icons/md";
+import { TbLogout2 } from "react-icons/tb";
 
 
 
@@ -61,9 +66,40 @@ const Navbar = () => {
                    <span className="absolute cursor-pointer top-2 right-4 text-2xl"><IoSearchOutline /></span>
                    </div>
 
-                   <div className="flex gap-4  items-center text-2xl">
+                   <div className="flex gap-2 md:gap-4  items-center text-2xl">
                    <FaRegHeart className="cursor-pointer"/>
-                   <IoCartOutline className="cursor-pointer"/>
+                   <div className="relative">
+  <IoCartOutline className="cursor-pointer text-3xl" />
+  <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">2</span>
+</div>
+                 
+                   <DropdownMenu >
+                   <DropdownMenuTrigger
+                   >  <FaUserCircle className="cursor-pointer hover:text-[#DB4444] active:text-[#DB4444]"/>
+                   </DropdownMenuTrigger>
+                   <DropdownMenuContent className="backdrop-blur-[75px]  pt-[18px] pr-3 pb-2 pl-5">  
+                    <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
+                    Manage My Account
+                    </DropdownMenuItem> 
+                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <RiShoppingBag3Line />
+                    My Order
+                    </DropdownMenuItem> 
+                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <MdOutlineCancel />
+                    My Cancellation
+                    </DropdownMenuItem> 
+                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <FaRegStar />
+                    My Reviews
+                    </DropdownMenuItem> 
+                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <TbLogout2 />
+                    Logout
+                    </DropdownMenuItem> 
+                    </DropdownMenuContent>
+                  
+                   </DropdownMenu>
                    </div>
                 </div>
                 </div>
