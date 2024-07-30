@@ -52,7 +52,7 @@ const CategorySection = () => {
 
    
     return (
-        <div className="relative">
+        <div className="relative ">
 
         <div className="w-[220px] border-r-2 pr-2">
              <ul className="space-y-4 font-poppins text-[#000]">
@@ -68,10 +68,10 @@ const CategorySection = () => {
                 
                  className="cursor-pointer"/>
                   
-                  {openIndex === index && item.subcategories && <div className=" h-auto top-0 -left-4  p-4 w-[200px] absolute bg-white shadow-md ">
+                  {openIndex === index && item.subcategories && <div className=" h-auto  top-0 lg:-right-52  p-4 w-[200px] absolute bg-white shadow-md ">
                   <ul>
                  {item.subcategories.map((sub, subIndex) => (
-                   <li key={subIndex}>
+                   <li className="my-2" key={subIndex}>
                     <Link to="/">{sub}</Link>
                    </li>
                  ))}
