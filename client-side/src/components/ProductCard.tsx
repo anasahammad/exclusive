@@ -1,0 +1,75 @@
+import { FaEye,  FaRegHeart } from "react-icons/fa";
+import Ratings from 'react-ratings-declarative';
+
+type productCardProps = {
+    productName: string;
+    price: number;
+    prevPrice: number;
+    discount: number;
+    starRatings: number;
+    ratings: number;
+    productImage: string;
+}
+
+const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  ratings, productImage} : productCardProps) => {
+    return (
+        <div className=" mx-auto  shadow-lg rounded-sm overflow-hidden group">
+      <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
+        <div className="p-[49px]">
+        <img
+          className=" "
+          src={productImage}
+          alt="Product"
+        />
+        </div>
+        <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs  px-2 py-1 rounded">
+          {discount}%
+        </span>
+        <div className="absolute flex flex-col items-center top-2 right-2 space-y-2">
+          <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
+          <FaRegHeart className=""/>
+          </button>
+          <button className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full ">
+            <FaEye />
+          </button>
+        </div>
+
+        <button className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-bold py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+          Add To Cart
+        </button>
+      </div>
+     
+      <div className="p-4">
+        <h2 className="text-lg font-medium font-poppins">{ productName}</h2>
+        <div className="flex items-center space-x-2 my-2 font-medium font-poppins">
+          <span className="text-[#DB4444]  text-xl">${price}</span>
+          <span className="text-gray-500 line-through">${prevPrice}</span>
+        </div>
+        <div className="flex items-center">
+          {/* <div className="flex items-center">
+            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
+            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
+            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
+            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
+            <FaStar className="w-4 h-4 text-gray-400 fill-current" />
+          </div> */}
+           <Ratings
+            rating={starRatings}
+            widgetRatedColors="rgb(251, 191, 36)"
+            widgetDimensions="20px"
+            widgetSpacings="2px"
+            readonly
+          >
+            {[...Array(5)].map((_, index) => (
+              <Ratings.Widget key={index} />
+            ))}
+          </Ratings>
+          <span className="ml-2 font-poppins font-semibold">({ratings})</span>
+        </div>
+       
+      </div>
+    </div>
+    );
+};
+
+export default ProductCard;
