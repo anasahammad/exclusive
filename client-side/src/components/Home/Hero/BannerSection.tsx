@@ -15,7 +15,7 @@ import { Pagination } from 'swiper/modules';
 
 const BannerSection = () => {
     return (
-        <div className="">
+        <div className="flex-1">
           <Slide1/>
           {/* <Swiper
         spaceBetween={30}
