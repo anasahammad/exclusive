@@ -46,7 +46,7 @@ const Navbar = () => {
             <div className=" flex justify-between items-center py-6 border-b-2 ">
                 {/* logo */}
                 <Link to="/">
-                    <h1 className="text-[#000] font-inter text-2xl font-bold">MobileMart</h1>
+                    <h1 className="text-[#000] font-inter text-2xl font-bold">Exclusive</h1>
                 </Link>
 
                 {/* desktop Navigation Menu */}
