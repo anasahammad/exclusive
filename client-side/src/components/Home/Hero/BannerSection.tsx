@@ -1,37 +1,38 @@
 
 import Slide1 from "./Slide1";
 import Slide2 from "./Slide2";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-
-
-// import required modules
-import { Pagination } from 'swiper/modules';
+import Slider from "react-slick";
 
 const BannerSection = () => {
+  const settings = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    waitForAnimate: false
+  };
     return (
-        <div className="flex-1">
-          <Slide1/>
-          {/* <Swiper
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide><Slide1/></SwiperSlide>
-        <SwiperSlide><Slide2/></SwiperSlide>
-        <SwiperSlide><Slide1/></SwiperSlide>
-        
-      </Swiper> */}
+       <div className="flex-1">
 
-        </div>
+        <Slide1/>
+         {/* <div className=" slider-container">
+           <Slider {...settings}>
+           <div>
+           <Slide1/>
+           </div>
+
+           <div>
+
+           
+           </div>
+           </Slider>
+         
+         
+
+        </div> */}
+       </div>
     );
 };
 

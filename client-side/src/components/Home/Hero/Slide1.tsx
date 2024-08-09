@@ -4,7 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 
 const Slide1 = () => {
     return (
-        <div className="bg-[#000] flex flex-col md:flex-row justify-between text-white">
+        <div>
+            <div className="bg-[#000] flex flex-col md:flex-row justify-between text-white">
            {/* left content */}
            <div className="pt-[50px] pl-16 flex flex-col ">
           <div className="flex md:gap-6 items-center ">
@@ -23,6 +24,7 @@ const Slide1 = () => {
            <div >
                <img className="w-full h-full" src={heroPhone} alt="" />
            </div>
+        </div>
         </div>
     );
 };

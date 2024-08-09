@@ -80,3 +80,11 @@
   }
 }
 
+.slick-arrow {
+  display: flex;
+}
+.slick-next{
+  background-image: url("./assets/icons_arrow-left.png");
+  background-color: red;
+  width: 50px;
+}

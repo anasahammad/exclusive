@@ -13,7 +13,7 @@ type productCardProps = {
 
 const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  ratings, productImage} : productCardProps) => {
     return (
-        <div className=" mx-auto  shadow-lg rounded-sm overflow-hidden group">
+        <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
         <div className="p-[49px]">
         <img
@@ -34,7 +34,7 @@ const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  
           </button>
         </div>
 
-        <button className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-bold py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+        <button className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
           Add To Cart
         </button>
       </div>

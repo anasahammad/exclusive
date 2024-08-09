@@ -4,7 +4,13 @@ import TopContent from "../shared/TopContent";
 import item1 from '../../assets/item1.png'
 import item2 from '../../assets/item2.png'
 import item3 from '../../assets/item3.png'
-import item4 from '../../assets/item4.png'
+import item4 from '../../assets/item4.png';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
+
 
 const products = [
     {
@@ -52,22 +58,62 @@ const products = [
 
     },
 ]
+
+const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <SlickNextArrow/>,
+    prevArrow: <SlickPrevArrow/>,
+    
+    responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            initialSlide: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  };
 const FlashSaleSec = () => {
     return (
-        <div className="my-12">
+        <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">
             <TopContent text="Today's" heading="Flash Sales"/>
             <CountTimer endTime="2024-08-25T23:59:59"/>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+            <div className=" mt-8 ">
+            <Slider {...settings}>
                 {
                   products.map((item, index)=> (
+                    
                     <ProductCard key={index} productName={item.productName} price={item.price}  prevPrice={item.prevPrice} discount={item.discount} starRatings={item.starRatings} ratings={item.ratings} 
                     productImage={item.productImage}/>
                   ))  
                 }
-
+            </Slider>
                 
             </div>
         </div>
