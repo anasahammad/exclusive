@@ -7,17 +7,16 @@ const BannerSection = () => {
   const settings = {
     dots: true,
     fade: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     waitForAnimate: false
   };
     return (
-       <div className="flex-1">
+       <div className="md:w-[77%]">
 
-        <Slide1/>
-         {/* <div className=" slider-container">
+        {/* <Slide1/> */}
+         <div className=" slider-container">
            <Slider {...settings}>
            <div>
            <Slide1/>
@@ -25,13 +24,13 @@ const BannerSection = () => {
 
            <div>
 
-           
+           <Slide2/>
            </div>
            </Slider>
          
          
 
-        </div> */}
+        </div>
        </div>
     );
 };

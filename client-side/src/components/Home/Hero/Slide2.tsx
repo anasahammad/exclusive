@@ -4,7 +4,7 @@ const Slide2 = () => {
     return (
         <div className="">
             <div>
-            <img className="h-[344px] w-full" src={slide2Image} alt="" />
+            <img className="h-[344px] overflow-hidden w-full" src={slide2Image} alt="" />
             </div>
         </div>
     );
