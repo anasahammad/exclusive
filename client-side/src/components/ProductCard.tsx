@@ -1,17 +1,17 @@
 import { FaEye,  FaRegHeart } from "react-icons/fa";
 import Ratings from 'react-ratings-declarative';
 
-type productCardProps = {
+interface productCardProps {
     productName: string;
     price: number;
-    prevPrice: number;
-    discount: number;
+    prevPrice?: number;
+    discount?: number;
     starRatings: number;
     ratings: number;
     productImage: string;
 }
 
-const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  ratings, productImage} : productCardProps) => {
+const ProductCard: React.FC<productCardProps> = ({ productName,  price, prevPrice, discount,  starRatings,  ratings, productImage}) => {
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
@@ -22,9 +22,9 @@ const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  
           alt="Product"
         />
         </div>
-        <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs  px-2 py-1 rounded">
+       {discount &&  <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs  px-2 py-1 rounded">
           {discount}%
-        </span>
+        </span>}
         <div className="absolute flex flex-col items-center top-2 right-2 space-y-2">
           <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
           <FaRegHeart className=""/>
@@ -43,7 +43,7 @@ const ProductCard = ({ productName,  price, prevPrice, discount,  starRatings,  
         <h2 className="text-lg font-medium font-poppins">{ productName}</h2>
         <div className="flex items-center space-x-2 my-2 font-medium font-poppins">
           <span className="text-[#DB4444]  text-xl">${price}</span>
-          <span className="text-gray-500 line-through">${prevPrice}</span>
+          {prevPrice && <span className="text-gray-500 line-through">${prevPrice}</span>}
         </div>
         <div className="flex items-center">
           {/* <div className="flex items-center">
