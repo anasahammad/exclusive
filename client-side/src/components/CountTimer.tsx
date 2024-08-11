@@ -29,7 +29,7 @@ const CountTimer: React.FC<FlashSaleCountdownProps> = ({ endTime }) => {
   };
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
-
+  
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());

@@ -1,3 +1,4 @@
+import Banner2 from "@/components/Home/Banner2";
 import BestSellingSection from "@/components/Home/BestSellingSection";
 import BrouseByCategorySec from "@/components/Home/BrouseByCategorySec";
 import FlashSaleSec from "@/components/Home/FlashSaleSec";
@@ -16,6 +17,7 @@ const Home = () => {
             <FlashSaleSec/>
             <BrouseByCategorySec/>
             <BestSellingSection/>
+            <Banner2/>
         </div>
     );
 };
