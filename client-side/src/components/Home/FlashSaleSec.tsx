@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 
 const products = [
@@ -115,6 +117,7 @@ const FlashSaleSec = () => {
                 }
             </Slider>
                 
+               <Link to="" className="flex justify-center items-center mt-8"> <Button className="bg-[#DB4444] w-[234px]">View All Products</Button></Link>
             </div>
         </div>
     );

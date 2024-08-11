@@ -1,3 +1,4 @@
+import BrouseByCategorySec from "@/components/Home/BrouseByCategorySec";
 import FlashSaleSec from "@/components/Home/FlashSaleSec";
 import BannerSection from "@/components/Home/Hero/BannerSection";
 import CategorySection from "@/components/Home/Hero/CategorySection";
@@ -12,6 +13,7 @@ const Home = () => {
             </div>
 
             <FlashSaleSec/>
+            <BrouseByCategorySec/>
         </div>
     );
 };

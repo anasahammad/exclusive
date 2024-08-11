@@ -1,6 +1,10 @@
 
+interface TopContentProps{
+    text: string;
+    heading: string;
+}
 
-const TopContent = ({text, heading}: {text: string, heading: string}) => {
+const TopContent: React.FC<TopContentProps> = ({text, heading}) => {
     return (
         <div>
             <div className="flex items-center gap-4">
