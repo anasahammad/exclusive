@@ -1,11 +1,14 @@
+interface ButtonProps{
+    title: string;
 
+}
 
 const Button = () => {
     
     return (
-        <div>
+        <button>
             
-        </div>
+        </button>
     );
 };
 
