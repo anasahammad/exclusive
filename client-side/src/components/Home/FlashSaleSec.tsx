@@ -22,7 +22,19 @@ const products = [
         discount: -40,
         starRatings: 5,
         ratings: 88,
-        productImage : item1
+        images: [
+          {   
+              color: 'red',
+              productImage : item1,
+              colorCode: "#DB4444"
+          },
+          {   
+              color: 'white',
+              productImage : item1,
+              colorCode: "#DB4444"
+          },
+
+      ]
 
 
     },
@@ -33,7 +45,19 @@ const products = [
         discount: -35,
         starRatings: 4,
         ratings: 75,
-        productImage : item2
+        images: [
+          {   
+              color: 'red',
+              productImage : item2,
+              colorCode: "#DB4444"
+          },
+          {   
+              color: 'white',
+              productImage : item2,
+              colorCode: "#DB4444"
+          },
+
+      ]
 
 
     },
@@ -44,7 +68,19 @@ const products = [
         discount: -30,
         starRatings: 5,
         ratings: 99,
-        productImage : item3
+        images: [
+          {   
+              color: 'red',
+              productImage : item3,
+              colorCode: "#DB4444"
+          },
+          {   
+              color: 'white',
+              productImage : item3,
+              colorCode: "#DB4444"
+          },
+
+      ]
 
 
     },
@@ -55,7 +91,19 @@ const products = [
         discount: -25,
         starRatings: 4.5,
         ratings: 99,
-        productImage : item4
+        images: [
+          {   
+              color: 'red',
+              productImage : item4,
+              colorCode: "#DB4444"
+          },
+          {   
+              color: 'white',
+              productImage : item4,
+              colorCode: "#DB4444"
+          },
+
+      ]
 
 
     },
@@ -111,8 +159,7 @@ const FlashSaleSec = () => {
                 {
                   products.map((item, index)=> (
                     
-                    <ProductCard key={index} productName={item.productName} price={item.price}  prevPrice={item.prevPrice} discount={item.discount} starRatings={item.starRatings} ratings={item.ratings} 
-                    productImage={item.productImage}/>
+                    <ProductCard key={index} item={item}/>
                   ))  
                 }
             </Slider>

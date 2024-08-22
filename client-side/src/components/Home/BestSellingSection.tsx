@@ -14,7 +14,19 @@ const products = [
         prevPrice: 360,
         starRatings: 5,
         ratings: 65,
-        productImage : item1
+        images: [
+            {   
+                color: 'red',
+                productImage : item1,
+                colorCode: "#DB4444"
+            },
+            {   
+                color: 'white',
+                productImage : item1,
+                colorCode: "#DB4444"
+            },
+  
+        ]
 
 
     },
@@ -24,7 +36,19 @@ const products = [
         prevPrice: 1160,
         starRatings: 4.5,
         ratings: 65,
-        productImage : item2
+        images: [
+            {   
+                color: 'red',
+                productImage : item2,
+                colorCode: "#DB4444"
+            },
+            {   
+                color: 'white',
+                productImage : item2,
+                colorCode: "#DB4444"
+            },
+  
+        ]
 
 
     },
@@ -34,7 +58,19 @@ const products = [
         prevPrice: 170,
         starRatings: 4.5,
         ratings: 65,
-        productImage : item3
+        images: [
+            {   
+                color: 'red',
+                productImage : item3,
+                colorCode: "#DB4444"
+            },
+            {   
+                color: 'white',
+                productImage : item3,
+                colorCode: "#DB4444"
+            },
+  
+        ]
 
 
     },
@@ -43,7 +79,19 @@ const products = [
         price: 375,
         starRatings: 4.5,
         ratings: 65,
-        productImage : item4
+        images: [
+            {   
+                color: 'red',
+                productImage : item4,
+                colorCode: "#DB4444"
+            },
+            {   
+                color: 'white',
+                productImage : item4,
+                colorCode: "#DB4444"
+            },
+  
+        ]
 
 
     },
@@ -63,8 +111,7 @@ const BestSellingSection = () => {
                 {
                   products.map((item, index)=> (
                     
-                    <ProductCard key={index} productName={item.productName} price={item.price}  prevPrice={item.prevPrice} starRatings={item.starRatings} ratings={item.ratings} 
-                    productImage={item.productImage}/>
+                    <ProductCard key={index} item={item}/>
                   ))  
                 }
             

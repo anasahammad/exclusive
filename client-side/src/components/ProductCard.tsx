@@ -2,28 +2,38 @@ import { FaEye,  FaRegHeart } from "react-icons/fa";
 import Ratings from 'react-ratings-declarative';
 
 interface productCardProps {
-    productName: string;
-    price: number;
-    prevPrice?: number;
-    discount?: number;
-    starRatings: number;
-    ratings: number;
-    productImage: string;
+    // productName: string;
+    // price: number;
+    // prevPrice?: number;
+    // discount?: number;
+    // starRatings: number;
+    // ratings: number;
+    // images: ImgType;
+    // isNew?: boolean;
+    item: any;
 }
-
-const ProductCard: React.FC<productCardProps> = ({ productName,  price, prevPrice, discount,  starRatings,  ratings, productImage}) => {
+// export type ImgType = {
+//   color: string,
+//   colorCode : string,
+//   image: string
+// }
+const ProductCard: React.FC<productCardProps> = ({ item}) => {
+  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew} = item;
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
         <div className="p-[49px]">
         <img
           className=" "
-          src={productImage}
+          src={images[0]?.productImage}
           alt="Product"
         />
         </div>
        {discount &&  <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs  px-2 py-1 rounded">
           {discount}%
+        </span>}
+       {isNew &&  <span className="absolute top-2 left-2 bg-[#0F6] font-poppins text-white text-xs  px-2 py-1 rounded">
+          NEW
         </span>}
         <div className="absolute flex flex-col items-center top-2 right-2 space-y-2">
           <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">

@@ -20,7 +20,7 @@ const times = [
 ]
 const Banner2 = () => {
     return (
-        <div className="bg-[#000] max-h-[400px] flex flex-col md:flex-row justify-between px-[56px] py-12 my-16">
+        <div className="bg-[#000] md:max-h-[400px] flex flex-col md:flex-row justify-between md:px-[56px] py-12 my-16">
             {/* left content*/}
             <div className="">
                 <h6 className="text-[#0F6] font-poppins font-semibold">Categories</h6>
