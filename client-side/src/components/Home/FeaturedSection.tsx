@@ -1,10 +1,16 @@
 import TopContent from "../shared/TopContent";
 import FeaturedCard from "./Featured/FeaturedCard";
 import playStationImg from "../../assets/ps5-slim-goedkope-playstation_large 1.png"
+
 import featuredWoman from "../../assets/featuredImage.png"
 import speakerImg from "../../assets/speakers.png"
 import perfumeImg from "../../assets/perfume.png"
 import WomenCollectionCard from "./Featured/WomenCollectionCard";
+import FeatureItem from "./Featured/FeatureItem";
+import { FaTruckFast } from "react-icons/fa6";
+
+import { BiSupport } from "react-icons/bi";
+import { FaUndoAlt } from "react-icons/fa";
 
 const FeaturedSection = () => {
     return (
@@ -55,6 +61,12 @@ const FeaturedSection = () => {
       </div>
     </div>
   </div>
+</div>
+
+<div className="flex flex-col md:flex-row justify-between gap-8 py-8 md:px-36">
+        <FeatureItem description="Free delivery for all orders over $140" title="FREE AND FAST DELIVERY" icon={FaTruckFast}/>
+        <FeatureItem description="Friendly 24/7 customer support" title="24/7 CUSTOMER SERVICE" icon={BiSupport}/>
+        <FeatureItem description="We reurn money within 30 days" title="MONEY BACK GUARANTEE" icon={FaUndoAlt}/>
 </div>
 
         </div>
