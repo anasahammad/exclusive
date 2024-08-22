@@ -1,6 +1,7 @@
 import Banner2 from "@/components/Home/Banner2";
 import BestSellingSection from "@/components/Home/BestSellingSection";
 import BrouseByCategorySec from "@/components/Home/BrouseByCategorySec";
+import FeaturedSection from "@/components/Home/FeaturedSection";
 import FlashSaleSec from "@/components/Home/FlashSaleSec";
 import BannerSection from "@/components/Home/Hero/BannerSection";
 import CategorySection from "@/components/Home/Hero/CategorySection";
@@ -20,6 +21,8 @@ const Home = () => {
             <BestSellingSection/>
             <Banner2/>
              <OurProductsSection/>
+             <FeaturedSection/>
+
         </div>
     );
 };
