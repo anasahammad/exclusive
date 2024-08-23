@@ -1,7 +1,7 @@
 
 interface TopContentProps{
     text: string;
-    heading: string;
+    heading?: string;
 }
 
 const TopContent: React.FC<TopContentProps> = ({text, heading}) => {
