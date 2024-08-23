@@ -9,7 +9,7 @@ interface SetColorProps{
 const SetColor: React.FC<SetColorProps> = ({images, cartProduct, handleColorSelect}) => {
     return (
         <div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mt-2">
                 <span className="font-inter text-xl">Colours:</span> <div className="flex gap-1">
                     {
                         images.map((image)=>{
