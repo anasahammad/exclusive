@@ -34,7 +34,7 @@ const Footer = () => {
 
                     <p className="font-poppins">111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
                     <p className="font-poppins">exclusive@gmail.com</p>
-                    <p className="font-poppins">+88015-88888-9999</p>
+                    <p className="font-poppins">+88016-08005838</p>
                     </FooterList>
 
                     <FooterList>
@@ -107,7 +107,13 @@ const Footer = () => {
                     </div>
                     </FooterList>
                 </div>
+
+                
             </div>
+            <hr/>
+                <div className="flex justify-center py-3">
+                    <p className="opacity-50">&copy; Copyright Anas {new Date().getFullYear()} All right reserves</p>
+                </div>
         </div>
     );
 };
