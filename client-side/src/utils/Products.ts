@@ -28,6 +28,7 @@ export const  products = [
           },
 
       ],
+      sizes : ["XS", "S", "M", "L", "XL"],
       reviews: [
         {
           id: "64a65a6158b470c6e06959ee",

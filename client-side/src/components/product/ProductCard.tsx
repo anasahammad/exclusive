@@ -16,6 +16,8 @@ interface productCardProps {
 
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
   const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id} = item;
+
+  // const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
