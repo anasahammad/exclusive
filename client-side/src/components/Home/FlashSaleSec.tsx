@@ -151,7 +151,7 @@ const FlashSaleSec = () => {
         <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">
             <TopContent text="Today's" heading="Flash Sales"/>
-            <CountTimer endTime="2024-08-25T23:59:59"/>
+            <CountTimer endTime="2024-10-25T23:59:59"/>
             </div>
 
             <div className=" mt-8 ">

@@ -1,5 +1,6 @@
 import { FaEye,  FaRegHeart } from "react-icons/fa";
 import Ratings from 'react-ratings-declarative';
+import { Link } from "react-router-dom";
 
 interface productCardProps {
     // productName: string;
@@ -29,19 +30,24 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           alt="Product"
         />
         </div>
-       {discount &&  <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs  px-2 py-1 rounded">
-          {discount}%
-        </span>}
-       {isNew &&  <span className="absolute top-2 left-2 bg-[#0F6] font-poppins text-white text-xs  px-2 py-1 rounded">
-          NEW
-        </span>}
+        {discount && (
+          <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs px-2 py-1 rounded">
+            {discount}%
+          </span>
+        )}
+        {isNew && !discount && (
+          <span className="absolute top-2 left-2 bg-[#0F6] font-poppins text-white text-xs px-2 py-1 rounded">
+            NEW
+          </span>
+        )}
         <div className="absolute flex flex-col items-center top-2 right-2 space-y-2">
           <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
           <FaRegHeart className=""/>
           </button>
-          <button className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full ">
+          <Link to={`/details/${productName}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">
             <FaEye />
-          </button>
+            
+          </Link>
         </div>
 
         <button className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
@@ -56,13 +62,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           {prevPrice && <span className="text-gray-500 line-through">${prevPrice}</span>}
         </div>
         <div className="flex items-center">
-          {/* <div className="flex items-center">
-            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
-            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
-            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
-            <FaStar className="w-4 h-4 text-yellow-500 fill-current" />
-            <FaStar className="w-4 h-4 text-gray-400 fill-current" />
-          </div> */}
+         
            <Ratings
             rating={starRatings}
             widgetRatedColors="rgb(251, 191, 36)"
