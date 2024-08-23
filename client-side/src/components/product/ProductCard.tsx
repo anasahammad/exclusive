@@ -13,11 +13,7 @@ interface productCardProps {
     // isNew?: boolean;
     item: any;
 }
-// export type ImgType = {
-//   color: string,
-//   colorCode : string,
-//   image: string
-// }
+
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
   const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id} = item;
     return (

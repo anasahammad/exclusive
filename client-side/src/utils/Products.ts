@@ -23,7 +23,7 @@ export const  products = [
           },
           {   
               color: 'white',
-              productImage : item1,
+              productImage : item2,
               colorCode: "#DB4444"
           },
 
