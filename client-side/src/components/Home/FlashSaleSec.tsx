@@ -1,5 +1,5 @@
 import CountTimer from "../CountTimer";
-import ProductCard from "../ProductCard";
+import ProductCard from "../product/ProductCard";
 import TopContent from "../shared/TopContent";
 import item1 from '../../assets/item1.png'
 import item2 from '../../assets/item2.png'
@@ -12,102 +12,103 @@ import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { products } from "@/utils/Products";
 
 
-const products = [
-    {
-        productName : 'HAVIT HV-G92 Gamepad',
-        price: 120,
-        prevPrice: 160,
-        discount: -40,
-        starRatings: 5,
-        ratings: 88,
-        images: [
-          {   
-              color: 'red',
-              productImage : item1,
-              colorCode: "#DB4444"
-          },
-          {   
-              color: 'white',
-              productImage : item1,
-              colorCode: "#DB4444"
-          },
+// const products = [
+//     {
+//         productName : 'HAVIT HV-G92 Gamepad',
+//         price: 120,
+//         prevPrice: 160,
+//         discount: -40,
+//         starRatings: 5,
+//         ratings: 88,
+//         images: [
+//           {   
+//               color: 'red',
+//               productImage : item1,
+//               colorCode: "#DB4444"
+//           },
+//           {   
+//               color: 'white',
+//               productImage : item1,
+//               colorCode: "#DB4444"
+//           },
 
-      ]
-
-
-    },
-    {
-        productName : 'AK-900 Wired Keyboard',
-        price: 960,
-        prevPrice: 1160,
-        discount: -35,
-        starRatings: 4,
-        ratings: 75,
-        images: [
-          {   
-              color: 'red',
-              productImage : item2,
-              colorCode: "#DB4444"
-          },
-          {   
-              color: 'white',
-              productImage : item2,
-              colorCode: "#DB4444"
-          },
-
-      ]
+//       ]
 
 
-    },
-    {
-        productName : 'IPS LCD Gaming Monitor',
-        price: 370,
-        prevPrice: 400,
-        discount: -30,
-        starRatings: 5,
-        ratings: 99,
-        images: [
-          {   
-              color: 'red',
-              productImage : item3,
-              colorCode: "#DB4444"
-          },
-          {   
-              color: 'white',
-              productImage : item3,
-              colorCode: "#DB4444"
-          },
+//     },
+//     {
+//         productName : 'AK-900 Wired Keyboard',
+//         price: 960,
+//         prevPrice: 1160,
+//         discount: -35,
+//         starRatings: 4,
+//         ratings: 75,
+//         images: [
+//           {   
+//               color: 'red',
+//               productImage : item2,
+//               colorCode: "#DB4444"
+//           },
+//           {   
+//               color: 'white',
+//               productImage : item2,
+//               colorCode: "#DB4444"
+//           },
 
-      ]
-
-
-    },
-    {
-        productName : 'S-Series Comfort Chair',
-        price: 375,
-        prevPrice: 400,
-        discount: -25,
-        starRatings: 4.5,
-        ratings: 99,
-        images: [
-          {   
-              color: 'red',
-              productImage : item4,
-              colorCode: "#DB4444"
-          },
-          {   
-              color: 'white',
-              productImage : item4,
-              colorCode: "#DB4444"
-          },
-
-      ]
+//       ]
 
 
-    },
-]
+//     },
+//     {
+//         productName : 'IPS LCD Gaming Monitor',
+//         price: 370,
+//         prevPrice: 400,
+//         discount: -30,
+//         starRatings: 5,
+//         ratings: 99,
+//         images: [
+//           {   
+//               color: 'red',
+//               productImage : item3,
+//               colorCode: "#DB4444"
+//           },
+//           {   
+//               color: 'white',
+//               productImage : item3,
+//               colorCode: "#DB4444"
+//           },
+
+//       ]
+
+
+//     },
+//     {
+//         productName : 'S-Series Comfort Chair',
+//         price: 375,
+//         prevPrice: 400,
+//         discount: -25,
+//         starRatings: 4.5,
+//         ratings: 99,
+//         images: [
+//           {   
+//               color: 'red',
+//               productImage : item4,
+//               colorCode: "#DB4444"
+//           },
+//           {   
+//               color: 'white',
+//               productImage : item4,
+//               colorCode: "#DB4444"
+//           },
+
+//       ]
+
+
+//     },
+// ]
 
 const settings = {
     dots: false,

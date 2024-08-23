@@ -19,7 +19,7 @@ interface productCardProps {
 //   image: string
 // }
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
-  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew} = item;
+  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id} = item;
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
@@ -44,7 +44,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
           <FaRegHeart className=""/>
           </button>
-          <Link to={`/details/${productName}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">
+          <Link to={`/details/${id}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">
             <FaEye />
             
           </Link>

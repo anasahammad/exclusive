@@ -1,5 +1,5 @@
 
-import ProductCard from "../ProductCard";
+import ProductCard from "../product/ProductCard";
 import TopContent from "../shared/TopContent";
 import item1 from '../../assets/Cart.png'
 import item2 from '../../assets/GP11_PRD3 1.png'

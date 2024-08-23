@@ -4,7 +4,7 @@ import item1 from "../../assets/switter.png";
 import item3 from "../../assets/grammax.png";
 import item4 from "../../assets/sam-mog.png";
 
-import ProductCard from "../ProductCard";
+import ProductCard from "../product/ProductCard";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 const products = [
