@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "@/pages/Home";
 
 import ProductDetailsPage from "@/pages/product/ProductDetailsPage";
+import Cart from "@/pages/Cart/Cart";
 
 export const router = createBrowserRouter([ 
     { 
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
         {
             path: "/details/:id",
             element: <ProductDetailsPage/>
+        },
+        {
+            path: "/cart",
+            element: <Cart/>
         }
     ] 
     }, 

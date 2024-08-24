@@ -1,3 +1,5 @@
+import useCart from "@/hooks/useCart";
+import { useEffect, useState } from "react";
 import { FaEye,  FaRegHeart } from "react-icons/fa";
 import Ratings from 'react-ratings-declarative';
 import { Link } from "react-router-dom";
@@ -17,7 +19,24 @@ interface productCardProps {
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
   const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id} = item;
 
+  const {handleAddProductToCart, cartProducts} = useCart()
+  const [isProductInCart, setIsProductInCart] = useState(false)
+
   // const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
+
+
+  useEffect(()=>{
+    setIsProductInCart(false)
+
+    if(cartProducts){
+      const existingIndex = cartProducts.findIndex(item=> item.id === id)
+
+      if(existingIndex > -1){
+        setIsProductInCart(true)
+      }
+    }
+  }, [cartProducts])
+  
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
@@ -48,9 +67,15 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           </Link>
         </div>
 
-        <button className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
-          Add To Cart
+       
+         
+         {isProductInCart ?  <Link to="/cart">
+          <button  className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+          Vew Cart
         </button>
+         </Link> :  <button onClick={()=>handleAddProductToCart(item)} className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+          Add To Cart
+        </button>}
       </div>
      
       <div className="p-4">
