@@ -1,4 +1,5 @@
 import useCart from "@/hooks/useCart";
+import ItemContent from "./ItemContent";
 
 
 const CartClient = () => {
@@ -20,7 +21,7 @@ const CartClient = () => {
     }
     return (
         <div>
-            <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid grid-cols-5 items-center gap-4  px-[40px] py-6 bg-white font-poppins">
+            <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid grid-cols-4 items-center gap-4  px-[40px] py-6 bg-white font-poppins">
                 <div className=" justify-self-start">Product</div>
                 <div className="justify-self-center">Price</div>
                 <div className="justify-self-center">Quantity</div>
@@ -28,8 +29,12 @@ const CartClient = () => {
             </div>
 
             <div>
-
-
+            {
+                cartProducts?.map(item=>{
+                    return <ItemContent key={item.id} item={item}/>
+                })
+            }
+            
             </div>
         </div>
     );

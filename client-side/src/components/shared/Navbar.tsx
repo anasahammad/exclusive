@@ -8,6 +8,7 @@ import { FiUser } from "react-icons/fi";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
+import useCart from "@/hooks/useCart";
 
 
 
@@ -19,6 +20,7 @@ interface LinkProps {
 
 const Navbar = () => {
     const location = useLocation()
+    const {cartTotalQty} = useCart()
     const navLinks:LinkProps[]  = [
         {
             path: '/',
@@ -68,10 +70,10 @@ const Navbar = () => {
 
                    <div className="flex gap-2 md:gap-4  items-center text-2xl">
                    <FaRegHeart className="cursor-pointer"/>
-                   <div className="relative">
+                   <Link to="/cart" className="relative">
   <IoCartOutline className="cursor-pointer text-3xl" />
-  <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">2</span>
-</div>
+  <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">{cartTotalQty}</span>
+</Link>
                  
                    <DropdownMenu >
                    <DropdownMenuTrigger

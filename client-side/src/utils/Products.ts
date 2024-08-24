@@ -15,16 +15,24 @@ export const  products = [
         discount: -40,
         starRatings: 5,
         ratings: 88,
+        colors: [
+          {color: 'red',
+          colorCode: "#DB4444"
+          },
+          {
+            color: 'white',
+            colorCode: "#fff"
+          }
+        ],
         images: [
           {   
-              color: 'red',
               productImage : item1,
-              colorCode: "#DB4444"
+              
           },
           {   
-              color: 'white',
+              
               productImage : item2,
-              colorCode: "#DB4444"
+              
           },
 
       ],
@@ -64,26 +72,35 @@ export const  products = [
         discount: -35,
         starRatings: 4,
         ratings: 75,
+        colors: [
+          {color: 'red',
+          colorCode: "#DB4444"
+          },
+          {
+            color: 'white',
+            colorCode: "#fff"
+          }
+        ],
         images: [
           {   
-              color: 'red',
+             
               productImage : item2,
-              colorCode: "#DB4444"
+              
           },
           {   
-              color: 'white',
+             
               productImage : item2,
-              colorCode: "#DB4444"
+              
           },
           {   
-              color: 'red',
+             
               productImage : item2,
-              colorCode: "#DB4444"
+             
           },
           {   
-              color: 'white',
+             
               productImage : item2,
-              colorCode: "#DB4444"
+              
           },
 
       ],
@@ -123,16 +140,25 @@ export const  products = [
         discount: -30,
         starRatings: 5,
         ratings: 99,
+        colors: [
+          {color: 'red',
+          colorCode: "#DB4444"
+          },
+          {
+            color: 'white',
+            colorCode: "#fff"
+          }
+        ],
         images: [
           {   
-              color: 'red',
+            
               productImage : item3,
-              colorCode: "#DB4444"
+           
           },
           {   
-              color: 'white',
+             
               productImage : item3,
-              colorCode: "#DB4444"
+            
           },
 
       ],
@@ -172,16 +198,25 @@ export const  products = [
         discount: -25,
         starRatings: 4.5,
         ratings: 99,
+        colors: [
+          {color: 'red',
+          colorCode: "#DB4444"
+          },
+          {
+            color: 'white',
+            colorCode: "#fff"
+          }
+        ],
         images: [
           {   
-              color: 'red',
+          
               productImage : item4,
-              colorCode: "#DB4444"
+             
           },
           {   
-              color: 'white',
+           
               productImage : item4,
-              colorCode: "#DB4444"
+              
           },
 
       ],

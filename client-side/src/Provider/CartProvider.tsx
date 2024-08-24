@@ -13,11 +13,12 @@ interface CartProviderProps {
 }
 const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(null)
+    const [cartTotalQty, setCartTotalQty] = useState(0)
 
 
     useEffect(()=>{
         const cartItems: any = localStorage.getItem("exclusiveCart")
-        const cProducts : CartProductType | null = JSON.parse(cartItems)
+        const cProducts : CartProductType[] | null = JSON.parse(cartItems)
         setCartProducts(cProducts)
     }, [])
     const handleAddProductToCart = useCallback((product: CartProductType)=>{
@@ -39,7 +40,8 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     }, [])
     const value = {
         cartProducts,
-        handleAddProductToCart
+        handleAddProductToCart,
+        cartTotalQty
     }
     return (
         <CartContext.Provider value={value}>

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import ProductImage from "./ProductImage";
-import { Button, Rating } from "@mui/material";
+import {  Rating } from "@mui/material";
 import { formatePrice } from "@/utils/formatePrice";
 import SetColor from "./SetColor";
 import SetSize from "./SetSize";
@@ -20,12 +20,14 @@ export type CartProductType = {
     quantity: number,
     price: number,
     size: string,
-    selectedImg: ImgType
+    images: string,
+    SelectedColor: ColorsType,
+    
 }
-export type ImgType = {
+export type ColorsType = {
   color: string,
   colorCode : string,
-  productImage: string
+ 
 }
 const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
@@ -39,21 +41,26 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
         quantity: 1,
         size: "M",
         price: product.price,
-        selectedImg: {...product.images[0]} 
+        images: product.images[0].productImage,
+        SelectedColor : product.colors[0].color,
+        
     })
 
 
-    const handleColorSelect = useCallback((value: ImgType)=>{
+    const handleColorSelect = useCallback((value: ColorsType)=>{
             setCartProduct((prev)=>{
-                return {...prev, selectedImg: value}
+                return {...prev, SelectedColor: value}
             })
-    }, [cartProduct.selectedImg])
+    }, [cartProduct.SelectedColor])
+
+   
 
     const handleSizeSelect = useCallback((value:string)=>{
         setCartProduct((prev)=>{
             return {...prev, size: value}
         })
     }, [])
+ 
   
 
     const handleDecreaseQty = useCallback(()=>{
@@ -79,7 +86,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
     }, [cartProduct])
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-6">
-            <ProductImage cartProduct={cartProduct} handleColorSelect={handleColorSelect} product={product}/>
+            <ProductImage   product={product}/>
+            
 
             <div className="flex flex-col gap-2">
                 <h2 className="font-inter font-semibold text-2xl">{product.productName}</h2>
@@ -97,8 +105,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
             <hr className="my-2"/>
 
-            {/* <div className="font-inter text-xl ">Colours:</div> */}
-            <SetColor cartProduct={cartProduct} handleColorSelect={handleColorSelect} images={product.images}/>
+            
+            <SetColor cartProduct={cartProduct} handleColorSelect={handleColorSelect} colors={product.colors}/>
 
             { product.sizes &&  <SetSize product={product} handleSizeSelect={handleSizeSelect} cartProduct={cartProduct}/>}
            
