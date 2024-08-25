@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaEye,  FaRegHeart } from "react-icons/fa";
 import Ratings from 'react-ratings-declarative';
 import { Link } from "react-router-dom";
+import { CartProductType } from "./ProductDetails";
 
 interface productCardProps {
     // productName: string;
@@ -17,9 +18,23 @@ interface productCardProps {
 }
 
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
-  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id} = item;
+  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id, colors, description, category} = item;
 
   const {handleAddProductToCart, cartProducts} = useCart()
+
+  const [cartProduct, setCartProduct] = useState<CartProductType>({
+    id: id,
+    productName: productName,
+    description: description,
+    category: category,
+    quantity: 1,
+    size: "M",
+    price: price,
+    shipping: "Free",
+    image: images[0]?.productImage,
+    SelectedColor: colors[0].color,
+    
+})
   const [isProductInCart, setIsProductInCart] = useState(false)
 
   // const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
@@ -29,11 +44,12 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
     setIsProductInCart(false)
 
     if(cartProducts){
-      const existingIndex = cartProducts.findIndex(item=> item.id === id)
+      const existingIndex = cartProducts.findIndex(cartItem=> cartItem.id === id)
 
       if(existingIndex > -1){
         setIsProductInCart(true)
       }
+      
     }
   }, [cartProducts])
   
@@ -73,13 +89,13 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           <button  className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
           Vew Cart
         </button>
-         </Link> :  <button onClick={()=>handleAddProductToCart(item)} className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+         </Link> :  <button onClick={()=>handleAddProductToCart(cartProduct)} className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
           Add To Cart
         </button>}
       </div>
      
       <div className="p-4">
-        <h2 className="text-lg font-medium font-poppins">{ productName}</h2>
+        <Link to={`/details/${id}`} className="text-lg font-medium font-poppins">{ productName}</Link>
         <div className="flex items-center space-x-2 my-2 font-medium font-poppins">
           <span className="text-[#DB4444]  text-xl">${price}</span>
           {prevPrice && <span className="text-gray-500 line-through">${prevPrice}</span>}

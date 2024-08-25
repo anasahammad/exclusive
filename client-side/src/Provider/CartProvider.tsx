@@ -3,11 +3,13 @@ import { createContext, useCallback, useEffect, useState } from "react";
 
 
 type CartContextType = {
-    cartProducts : CartProductType | null;
+    cartProducts : CartProductType[] | null;
+    shipping:  number;
     handleAddProductToCart : (product: CartProductType)=> void
     handleRemoveFromCart : (product: CartProductType)=> void
     handleCartQtyIncrase: (product: CartProductType) => void
     handleCartQtyDecrase: (product: CartProductType) => void
+    handleCartTotalAmount: ()=>void
 }
 export const CartContext = createContext<CartContextType | null>(null)
 
@@ -15,8 +17,11 @@ interface CartProviderProps {
     children: React.ReactNode;
 }
 const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
-    const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(null)
-    const [cartTotalQty, setCartTotalQty] = useState(0)
+    const [cartProducts, setCartProducts] = useState<CartProductType[] | null >(null)
+    const [cartTotalQty, setCartTotalQty] = useState<number>(0)
+    const [cartTotalAmount, setCartTotalAmount] = useState(0)
+    const [subTotal, setSubTotal] = useState(0)
+    const [shipping, setShipping] = useState< number>(10)
 
 
     useEffect(()=>{
@@ -24,6 +29,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
         const cProducts : CartProductType[] | null = JSON.parse(cartItems)
         setCartProducts(cProducts)
     }, [])
+
     const handleAddProductToCart = useCallback((product: CartProductType)=>{
 
         setCartProducts((prev)=>{
@@ -37,11 +43,44 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
 
             alert("Product Added to Cart")
             localStorage.setItem("exclusiveCart", JSON.stringify(updatedCart))
-
             return updatedCart;
         }) 
     }, [])
 
+    
+       useEffect(()=>{
+        const getTotals = ()=>{
+            if(cartProducts){
+                const {total, qty} = cartProducts.reduce((acc, item)=>{
+                    const itemTotal = item.price * item.quantity 
+
+                    acc.total += itemTotal;
+                    acc.qty += item.quantity;
+
+                    return acc;
+
+                }, {
+                    total: 0,
+                    qty: 0
+                })
+
+                setCartTotalAmount(total)
+                setCartTotalQty(qty)
+                setSubTotal(total + shipping)
+                
+            }else {
+                setCartTotalAmount(0);
+                setCartTotalQty(0);
+                setSubTotal(shipping);
+            }
+        }
+        getTotals()
+       }, [cartProducts, shipping])
+
+        
+   
+
+   
     const handleRemoveFromCart = useCallback((product: CartProductType)=>{
         if(product){
             const filterProducts = cartProducts?.filter((item)=>{
@@ -97,7 +136,10 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
         cartTotalQty,
         handleRemoveFromCart,
         handleCartQtyIncrase,
-        handleCartQtyDecrase
+        handleCartQtyDecrase,
+        shipping,
+        cartTotalAmount,
+        subTotal
     }
 
    

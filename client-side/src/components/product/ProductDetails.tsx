@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ProductImage from "./ProductImage";
 import {  Rating } from "@mui/material";
 import { formatePrice } from "@/utils/formatePrice";
@@ -7,6 +7,8 @@ import SetSize from "./SetSize";
 import SetQuantity from "./SetQuantity";
 import { FaRegHeart, FaTruckFast } from "react-icons/fa6";
 import { TbRefresh } from "react-icons/tb";
+import useCart from "@/hooks/useCart";
+import { Link } from "react-router-dom";
 
 interface ProductDetailsProps{
     product: any;
@@ -20,7 +22,8 @@ export type CartProductType = {
     quantity: number,
     price: number,
     size: string,
-    images: string,
+    image: string,
+    shipping : string | number,
     SelectedColor: ColorsType,
     
 }
@@ -32,7 +35,8 @@ export type ColorsType = {
 const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
     const productRatings = product.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product.reviews.length
-
+    const {handleAddProductToCart, cartProducts} = useCart()
+    const [isProductInCart, setIsProductInCart] = useState(false)
     const [cartProduct, setCartProduct] = useState<CartProductType>({
         id: product.id,
         productName: product.productName,
@@ -41,7 +45,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
         quantity: 1,
         size: "M",
         price: product.price,
-        images: product.images[0].productImage,
+        shipping: "Free",
+        image: product.images[0].productImage,
         SelectedColor : product.colors[0].color,
         
     })
@@ -84,6 +89,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
             return {...prev, quantity : prev.quantity++}
         })
     }, [cartProduct])
+
+    useEffect(()=>{
+        setIsProductInCart(false)
+    
+        if(cartProducts){
+          const existingIndex = cartProducts.findIndex(cartItem=> cartItem.id === product.id)
+    
+          if(existingIndex > -1){
+            setIsProductInCart(true)
+          }
+          
+          return 
+        }
+      }, [cartProducts])
+   
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-6">
             <ProductImage   product={product}/>
@@ -115,7 +135,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
                 <SetQuantity cartProduct={cartProduct} handleIncreaseQty={handleIncreaseQty} handleDecreaseQty={handleDecreaseQty}/>
 
                 <div className="flex gap-4">
-                    <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Buy Now</button>
+
+                    {isProductInCart ? <Link to="/cart">
+                        <button className="px-6 md:px-12 py-[10px] border-[1.5px] border-[#00000066] font-medium  rounded-sm">View Cart</button>
+                    </Link> : <button onClick={()=>handleAddProductToCart(cartProduct)} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Add to Cart</button>}
+                    
                     <div className="border cursor-pointer  inline-flex items-center justify-center rounded-sm p-2 w-[40px] h-[40px]">
                 <FaRegHeart/>
                 </div>

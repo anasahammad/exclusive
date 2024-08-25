@@ -1,13 +1,14 @@
 import useCart from "@/hooks/useCart";
 import ItemContent from "./ItemContent";
 import { Link } from "react-router-dom";
+import { formatePrice } from "@/utils/formatePrice";
 
 
 const CartClient = () => {
 
-    const {cartProducts} = useCart()
+    const {cartProducts, shipping, cartTotalAmount, subTotal} = useCart()
 
-    
+    console.log(cartProducts)
     if(!cartProducts || cartProducts.length === 0){
         return <div className="w-full h-screen">
                 <div className="flex flex-col justify-center items-center space-y-12">
@@ -15,7 +16,8 @@ const CartClient = () => {
                     Your Cart Is Empty
                 </div>
                 <div>
-                <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Start Shopping</button>
+                <Link to="/">
+                <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Start Shopping</button></Link>
                 </div>
                 </div>
         </div>
@@ -44,7 +46,7 @@ const CartClient = () => {
           <button className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Return To Shop</button>
           </Link>
 
-            <button className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Update Cart</button>
+            <button  className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Update Cart</button>
             </div>
 
             <div className="my-20 flex justify-between items-start">
@@ -58,20 +60,20 @@ const CartClient = () => {
 
                         <div className="flex justify-between items-center my-4">
                             <div>Subtotal:</div>
-                            <div>$1750</div>
+                            <div>{formatePrice(cartTotalAmount)}</div>
                         </div>
 
                         <hr />
                         <div className="flex justify-between items-center my-4">
                             <div>Shipping:</div>
-                            <div>Free</div>
+                            <div>{formatePrice(shipping)}</div>
                         </div>
 
                         <hr />
 
                         <div className="flex justify-between items-center my-4">
                             <div>Total:</div>
-                            <div>$1750</div>
+                            <div>{subTotal}</div>
                         </div>
 
                         <Link to="/" className="flex justify-center items-center mt-4">
