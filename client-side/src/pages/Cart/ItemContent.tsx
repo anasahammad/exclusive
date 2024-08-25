@@ -15,8 +15,8 @@ const ItemContent:React.FC<ItemContentProps> = ({item}) => {
 
     const {handleRemoveFromCart, handleCartQtyDecrase, handleCartQtyIncrase} = useCart()
     return (
-        <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid font-poppins grid-cols-4 gap-4 px-[42px] py-6 ">
-            <div className=" border  justify-self-start flex gap-2 items-center">
+        <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid font-poppins md:grid-cols-4 gap-4 px-[42px] py-6 ">
+            <div className="   md:justify-self-start flex gap-2 items-center">
                 <div className="relative  w-[54px] aspect-square group">
                     <img src={item?.images[0].productImage} alt={item.productName} className="object-contain" />
 
@@ -30,14 +30,14 @@ const ItemContent:React.FC<ItemContentProps> = ({item}) => {
                 </Link></div>
             </div>
 
-            <div className="justify-self-center flex justify-center items-center border">{formatePrice(item.price)}</div>
+            <div className="justify-self-center flex justify-center items-center ">{formatePrice(item.price)}</div>
 
             {/* <div className="justify-self-center flex justify-center items-center border">{formatePrice(item.price)}</div> */}
 
             <div className="justify-self-center">
             <SetQuantity cartProduct={item} handleDecreaseQty={()=>handleCartQtyDecrase(item)} handleIncreaseQty={()=>{handleCartQtyIncrase(item)}}/>
             </div>
-            <div className="justify-self-end flex justify-center items-center border">{formatePrice(item.price * item.quantity)}</div>
+            <div className="justify-self-end flex justify-center items-center ">{formatePrice(item.price * item.quantity)}</div>
         </div>
     );
 };
