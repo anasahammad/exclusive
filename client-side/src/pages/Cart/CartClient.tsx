@@ -28,7 +28,7 @@ const CartClient = () => {
                 <div className="justify-self-end">Subtotal</div>
             </div>
 
-            <div>
+            <div className="space-y-8 mt-4">
             {
                 cartProducts?.map(item=>{
                     return <ItemContent key={item.id} item={item}/>

@@ -5,6 +5,7 @@ import { createContext, useCallback, useEffect, useState } from "react";
 type CartContextType = {
     cartProducts : CartProductType | null;
     handleAddProductToCart : (product: CartProductType)=> void
+    handleRemoveFromCart : (product: CartProductType)=> void
 }
 export const CartContext = createContext<CartContextType | null>(null)
 
@@ -38,11 +39,26 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
             return updatedCart;
         }) 
     }, [])
+
+    const handleRemoveFromCart = useCallback((product: CartProductType)=>{
+        if(product){
+            const filterProducts = cartProducts?.filter((item)=>{
+                return item.id !== product.id
+            })
+
+            setCartProducts(filterProducts)
+            alert("Product remove from cart")
+            localStorage.setItem("exclusiveCart", JSON.stringify(filterProducts))
+        }
+    }, [cartProducts])
     const value = {
         cartProducts,
         handleAddProductToCart,
-        cartTotalQty
+        cartTotalQty,
+        handleRemoveFromCart
     }
+
+   
     return (
         <CartContext.Provider value={value}>
             {children}
