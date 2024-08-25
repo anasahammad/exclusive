@@ -1,5 +1,6 @@
 import useCart from "@/hooks/useCart";
 import ItemContent from "./ItemContent";
+import { Link } from "react-router-dom";
 
 
 const CartClient = () => {
@@ -35,6 +36,26 @@ const CartClient = () => {
                 })
             }
             
+            </div>
+
+
+            <div className="flex justify-between items-center mt-6">
+          <Link to="/">
+          <button className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Return To Shop</button>
+          </Link>
+
+            <button className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Update Cart</button>
+            </div>
+
+            <div className="my-20 flex justify-between items-center">
+                <div className="flex gap-4 items-center">
+                    <input type="text" className="border-[1.5px] border-[#00000066] py-3 pl-6 pr-[164px] rounded-sm" placeholder="Coupon Code" />
+                    <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins">Apply Coupon</button>
+                </div>
+
+                <div className="border-[1.5px] rounded-sm px-6 py-8 font-poppins w-[420px]">
+                        <h4 className="font-medium text-xl">Cart Total</h4>
+                </div>
             </div>
         </div>
     );
