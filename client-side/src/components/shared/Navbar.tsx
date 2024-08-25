@@ -20,7 +20,7 @@ interface LinkProps {
 
 const Navbar = () => {
     const location = useLocation()
-    const {cartTotalQty} = useCart()
+    const {cartTotalQty, wishList} = useCart()
     const navLinks:LinkProps[]  = [
         {
             path: '/',
@@ -69,7 +69,10 @@ const Navbar = () => {
                    </div>
 
                    <div className="flex gap-2 md:gap-4  items-center text-2xl">
-                   <FaRegHeart className="cursor-pointer"/>
+                  <Link to="/wishlist" className="relative">
+                  <FaRegHeart className="cursor-pointer"/>
+                  <span className="absolute -top-1 -right-1 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">{wishList?.length? wishList.length : 0}</span>
+                  </Link>
                    <Link to="/cart" className="relative">
   <IoCartOutline className="cursor-pointer text-3xl" />
   <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">{cartTotalQty}</span>

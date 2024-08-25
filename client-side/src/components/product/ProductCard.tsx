@@ -20,7 +20,7 @@ interface productCardProps {
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
   const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id, colors, description, category} = item;
 
-  const {handleAddProductToCart, cartProducts} = useCart()
+  const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: id,
@@ -36,6 +36,8 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
     
 })
   const [isProductInCart, setIsProductInCart] = useState(false)
+  
+
 
   // const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
 
@@ -48,10 +50,13 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
 
       if(existingIndex > -1){
         setIsProductInCart(true)
+
       }
       
     }
   }, [cartProducts])
+
+  
   
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
@@ -74,7 +79,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           </span>
         )}
         <div className="absolute flex flex-col items-center top-2 right-2 space-y-2">
-          <button className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
+          <button onClick={()=>handleAddProductToWishlist(item)} className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
           <FaRegHeart className=""/>
           </button>
           <Link to={`/details/${id}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">

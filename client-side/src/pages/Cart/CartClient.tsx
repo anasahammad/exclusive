@@ -8,7 +8,7 @@ const CartClient = () => {
 
     const {cartProducts, shipping, cartTotalAmount, subTotal} = useCart()
 
-    console.log(cartProducts)
+    // console.log(cartProducts)
     if(!cartProducts || cartProducts.length === 0){
         return <div className="w-full h-screen">
                 <div className="flex flex-col justify-center items-center space-y-12">

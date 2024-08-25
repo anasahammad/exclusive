@@ -1,12 +1,16 @@
-import { CartProductType } from "@/components/product/ProductDetails";
+import { CartProductType, ProductType } from "@/components/product/ProductDetails";
 import { createContext, useCallback, useEffect, useState } from "react";
 
 
 type CartContextType = {
     cartProducts : CartProductType[] | null;
+    wishList : ProductType[] | null;
     shipping:  number;
+    cartTotalQty : number;
     handleAddProductToCart : (product: CartProductType)=> void
+    handleAddProductToWishlist : (product: ProductType)=> void
     handleRemoveFromCart : (product: CartProductType)=> void
+    handleRemoveFromWishlist : (product: ProductType)=> void
     handleCartQtyIncrase: (product: CartProductType) => void
     handleCartQtyDecrase: (product: CartProductType) => void
     handleCartTotalAmount: ()=>void
@@ -18,16 +22,24 @@ interface CartProviderProps {
 }
 const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const [cartProducts, setCartProducts] = useState<CartProductType[] | null >(null)
+    const [wishList, setWishlist] = useState<ProductType[] | null>(null)
     const [cartTotalQty, setCartTotalQty] = useState<number>(0)
     const [cartTotalAmount, setCartTotalAmount] = useState(0)
     const [subTotal, setSubTotal] = useState(0)
     const [shipping, setShipping] = useState< number>(10)
+    
 
 
     useEffect(()=>{
         const cartItems: any = localStorage.getItem("exclusiveCart")
         const cProducts : CartProductType[] | null = JSON.parse(cartItems)
         setCartProducts(cProducts)
+    }, [])
+
+    useEffect(()=>{
+        const WishlistItems: any = localStorage.getItem("exclusiveWishlist")
+        const WProducts : ProductType[] | null = JSON.parse(WishlistItems)
+        setWishlist(WProducts)
     }, [])
 
     const handleAddProductToCart = useCallback((product: CartProductType)=>{
@@ -46,6 +58,32 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
             return updatedCart;
         }) 
     }, [])
+
+
+    const handleAddProductToWishlist = useCallback((product: ProductType)=>{
+        
+        const isExist = wishList?.find(item=> item.id === product.id)
+        if(isExist){
+            return alert("The product is already added on the wishlist")
+        }
+
+        setWishlist((prev)=>{
+
+            let updatedWishlist;
+            if(prev){
+                updatedWishlist = [...prev, product]
+                
+                
+            } else{
+                updatedWishlist = [product]
+               
+            }
+
+            alert("Product Added to Wishlist")
+            localStorage.setItem("exclusiveWishlist", JSON.stringify(updatedWishlist))
+            return updatedWishlist;
+        }) 
+    }, [wishList])
 
     
        useEffect(()=>{
@@ -93,6 +131,18 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
         }
     }, [cartProducts])
 
+    const handleRemoveFromWishlist = useCallback((product: ProductType)=>{
+        if(product){
+            const filterProducts = wishList?.filter((item)=>{
+                return item.id !== product.id
+            })
+
+            setWishlist(filterProducts)
+            alert("Product remove from wishlist")
+            localStorage.setItem("exclusiveWishlist", JSON.stringify(filterProducts))
+        }
+    }, [wishList])
+
     const handleCartQtyIncrase = useCallback((product: CartProductType)=>{
         let updatedCart;
         if(product.quantity === 99){
@@ -130,6 +180,9 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
             }
         }
     }, [cartProducts])
+
+
+   
     const value = {
         cartProducts,
         handleAddProductToCart,
@@ -139,7 +192,10 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
         handleCartQtyDecrase,
         shipping,
         cartTotalAmount,
-        subTotal
+        subTotal,
+        handleAddProductToWishlist,
+        wishList,
+        handleRemoveFromWishlist
     }
 
    

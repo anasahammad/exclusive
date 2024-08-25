@@ -32,11 +32,23 @@ export type ColorsType = {
   colorCode : string,
  
 }
+
+export type ProductType = {
+    id: string,
+    productName: string,
+    description: string,
+    category: string,
+    price: number,
+    size: string,
+    image: string,
+
+}
 const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
     const productRatings = product.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product.reviews.length
-    const {handleAddProductToCart, cartProducts} = useCart()
+    const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
     const [isProductInCart, setIsProductInCart] = useState(false)
+    const [isProductInWishlist, setIsProductInWishlist] = useState(false)
     const [cartProduct, setCartProduct] = useState<CartProductType>({
         id: product.id,
         productName: product.productName,
@@ -90,20 +102,20 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
         })
     }, [cartProduct])
 
-    useEffect(()=>{
-        setIsProductInCart(false)
+   
+   
+      useEffect(()=>{
+        setIsProductInWishlist(false)
     
-        if(cartProducts){
-          const existingIndex = cartProducts.findIndex(cartItem=> cartItem.id === product.id)
+        if(wishList){
+          const existingIndex = wishList.findIndex(wishItem=> wishItem.id === product.id)
     
           if(existingIndex > -1){
-            setIsProductInCart(true)
+            setIsProductInWishlist(true)
           }
           
-          return 
         }
-      }, [cartProducts])
-   
+      }, [wishList])
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-6">
             <ProductImage   product={product}/>
@@ -140,9 +152,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
                         <button className="px-6 md:px-12 py-[10px] border-[1.5px] border-[#00000066] font-medium  rounded-sm">View Cart</button>
                     </Link> : <button onClick={()=>handleAddProductToCart(cartProduct)} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Add to Cart</button>}
                     
-                    <div className="border cursor-pointer  inline-flex items-center justify-center rounded-sm p-2 w-[40px] h-[40px]">
+                    <button disabled={isProductInWishlist} onClick={()=>handleAddProductToWishlist(product)} className="border cursor-pointer  inline-flex items-center justify-center rounded-sm p-2 w-[40px] h-[40px]">
                 <FaRegHeart/>
-                </div>
+                </button>
                 </div>
 
                 

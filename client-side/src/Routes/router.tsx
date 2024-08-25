@@ -4,6 +4,7 @@ import Home from "@/pages/Home";
 
 import ProductDetailsPage from "@/pages/product/ProductDetailsPage";
 import Cart from "@/pages/Cart/Cart";
+import WishList from "@/pages/wishlist/WishList";
 
 export const router = createBrowserRouter([ 
     { 
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         {
             path: "/cart",
             element: <Cart/>
+        },
+        {
+            path: "/wishlist",
+            element: <WishList/>
         }
     ] 
     }, 
