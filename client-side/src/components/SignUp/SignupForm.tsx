@@ -16,7 +16,7 @@ type FormValues = {
   };
 const SignupForm = () => {
     
-    const {createUser} = useAuth()
+    const {createUser, googleLogin} = useAuth()
     const navigate = useNavigate()
     
     const { register, handleSubmit, watch, formState: {errors} } = useForm<FormValues>();
@@ -98,7 +98,17 @@ const SignupForm = () => {
                 
             </form>
 
-            <button  className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium mt-8 flex justify-center items-center gap-2">  <FcGoogle style={{ color: '#4285F4' }} /> <span>Sign up with Google</span></button>
+            <button onClick={()=>{googleLogin().then(result=>{
+                 console.log(result.user);
+                 navigate("/")
+            }
+           
+            ).catch(error=>{
+                console.log(error)
+            })
+            
+                }
+            } className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium mt-8 flex justify-center items-center gap-2">  <FcGoogle style={{ color: '#4285F4' }} /> <span>Sign up with Google</span></button>
 
             <div className="font-poppins text-center text-base mt-8">
                 <p className="inline">Already have account?</p> <Link className="underline " to="/login">Log in</Link>
