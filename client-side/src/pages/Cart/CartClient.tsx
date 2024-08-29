@@ -73,7 +73,7 @@ const CartClient = () => {
 
                         <div className="flex justify-between items-center my-4">
                             <div>Total:</div>
-                            <div>{subTotal}</div>
+                            <div>{formatePrice(subTotal)}</div>
                         </div>
 
                         <Link to="/" className="flex justify-center items-center mt-4">
