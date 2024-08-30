@@ -2,9 +2,8 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import bcrypt from 'bcryptjs';
 import useAuth from "@/hooks/useAuth";
-import { updateEmail, updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateEmail, updateProfile } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
 
@@ -24,19 +23,27 @@ const SignupForm = () => {
     const  onSubmit: SubmitHandler<FormValues> = async  (data)=>{
         const {name, email, phone, password} = data;
         console.log(data)
-         const hasedPassword = await bcrypt.hash(password, 10)
+         
         
-        
-         createUser(email, hasedPassword)
+         createUser(email, password)
          .then(result=>{
             console.log(result.user)
             // toast.success("Account Created Successfully")
-            updateProfile(result.user, {
-                displayName: name,
-                
+
+            sendEmailVerification(result.user)
+            .then(()=>{
+                alert("Check your email and verify your account")
+                navigate("/")
             })
 
-            navigate("/")
+            updateProfile(result.user, {
+                displayName: name,
+                photoURL: ''
+                
+            })
+            
+           
+             
          }).catch((error: FirebaseError)=>{
             console.log(error)
             // toast.error(error.message)
@@ -61,10 +68,13 @@ const SignupForm = () => {
                 </div>
 
                 <div>
-                    <input type="email" {...register("email", {  required: true}
+                    <input type="email" {...register("email", {  required: "Email is required", pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "Invalid Email address"
+                    }}
               )}    placeholder="Email" className="w-full  outline-none border-b-2 pb-2 border-black border-opacity-50"/>
 
-                    {errors.email && <p className="text-[#DB4444]"> Valid email  is required</p>}
+                    {errors.email && <p className="text-[#DB4444]"> {errors.email.message}</p>}
                 </div>
 
                 <div>

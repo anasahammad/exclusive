@@ -1,5 +1,5 @@
 import { auth } from "@/firebase/firebase.config";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword,  signInWithPopup,  signOut,  User, UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword,  signInWithPopup,  signOut,  User, UserCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
 interface AuthProviderProps{
@@ -11,6 +11,8 @@ export type AuthContextType = {
   loginUser: (email: string, password: string) => Promise<UserCredential>;
   googleLogin: () => Promise<UserCredential>;
   logout: () => Promise<void>;
+  resetPassword : (email: string)=> Promise<void>;
+  emailVerification : ()=> Promise<void> | undefined;
   user: User | null;
   loading: boolean;
 }
@@ -36,6 +38,16 @@ const [loading, setLoading] = useState(true)
    const logout = ()=>{
     return signOut(auth)
    }
+
+   const emailVerification = ()=>{
+    if(auth.currentUser !== null){
+        return sendEmailVerification(auth.currentUser)
+    }
+    return undefined
+   }
+   const resetPassword = (email: string)=>{
+    return sendPasswordResetEmail(auth, email)
+   }
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, currentUser=>{
            if(currentUser){
@@ -57,7 +69,9 @@ const [loading, setLoading] = useState(true)
         setLoading,
         loginUser,
         googleLogin,
-        logout
+        logout,
+        resetPassword,
+        emailVerification
     }
     return (
         <AuthContext.Provider value={authInfo}>
