@@ -9,6 +9,7 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import useCart from "@/hooks/useCart";
+import useAuth from "@/hooks/useAuth";
 
 
 
@@ -21,6 +22,7 @@ interface LinkProps {
 const Navbar = () => {
     const location = useLocation()
     const {cartTotalQty, wishList} = useCart()
+    const {logout, user, loading} = useAuth()
     const navLinks:LinkProps[]  = [
         {
             path: '/',
@@ -39,6 +41,18 @@ const Navbar = () => {
             title: 'Sign Up'
         },
     ]
+
+    const handleSignOut = () => {
+        logout().then(() => {
+        //   Swal.fire({
+        //     title: "Congratulations!",
+        //     text: "Sign Out Successful",
+        //     icon: "success",
+        //   });
+
+        alert("logout successful")
+        });
+      };
     return (
         <header className="py-4 ">
             <div className="container mx-auto ">
@@ -68,6 +82,7 @@ const Navbar = () => {
                    <span className="absolute cursor-pointer top-2 right-4 text-2xl"><IoSearchOutline /></span>
                    </div>
 
+                  
                    <div className="flex gap-2 md:gap-4  items-center text-2xl">
                   <Link to="/wishlist" className="relative">
                   <FaRegHeart className="cursor-pointer"/>
@@ -78,7 +93,7 @@ const Navbar = () => {
   <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">{cartTotalQty}</span>
 </Link>
                  
-                   <DropdownMenu >
+                 {user && <DropdownMenu >
                    <DropdownMenuTrigger
                    >  <FaUserCircle className="cursor-pointer hover:text-[#DB4444] active:text-[#DB4444]"/>
                    </DropdownMenuTrigger>
@@ -100,11 +115,12 @@ const Navbar = () => {
                     </DropdownMenuItem> 
                     <DropdownMenuItem className="flex gap-4 items-center" >
                     <TbLogout2 />
-                    Logout
+                    <p onClick={handleSignOut}>Logout</p>
                     </DropdownMenuItem> 
                     </DropdownMenuContent>
                   
-                   </DropdownMenu>
+                   </DropdownMenu>}
+                   
                    </div>
                 </div>
                 </div>
