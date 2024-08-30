@@ -37,8 +37,8 @@ const Navbar = () => {
             title: 'About'
         },
         {
-            path: '/sign-up',
-            title: 'Sign Up'
+            path: '/login',
+            title: 'Log In'
         },
     ]
 

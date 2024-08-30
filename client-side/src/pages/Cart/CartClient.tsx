@@ -1,12 +1,28 @@
 import useCart from "@/hooks/useCart";
 import ItemContent from "./ItemContent";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatePrice } from "@/utils/formatePrice";
+import useAuth from "@/hooks/useAuth";
 
 
 const CartClient = () => {
 
     const {cartProducts, shipping, cartTotalAmount, subTotal} = useCart()
+    const {user} = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const form = location.state || "/";
+
+    const handleCheckout = ()=>{
+        if(!user){
+            alert("You have to login first")
+            navigate("/login")
+            return
+        } else{
+            navigate("/checkout")
+            return
+        }
+    }
 
     // console.log(cartProducts)
     if(!cartProducts || cartProducts.length === 0){
@@ -76,9 +92,9 @@ const CartClient = () => {
                             <div>{formatePrice(subTotal)}</div>
                         </div>
 
-                        <Link to="/" className="flex justify-center items-center mt-4">
-                        <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins ">Procees to checkout</button>
-                        </Link>
+                        <div  className="flex justify-center items-center mt-4">
+                        <button onClick={handleCheckout} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins ">Procees to checkout</button>
+                        </div>
                 </div>
             </div>
         </div>
