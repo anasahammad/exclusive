@@ -17,11 +17,11 @@ const Home = () => {
             </div>
 
             <FlashSaleSec/>
-            {/* <BrouseByCategorySec/>
+            <BrouseByCategorySec/>
             <BestSellingSection/>
             <Banner2/>
              <OurProductsSection/>
-             <FeaturedSection/> */}
+             <FeaturedSection/>
 
         </div>
     );

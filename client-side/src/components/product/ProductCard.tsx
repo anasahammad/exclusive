@@ -1,9 +1,9 @@
 import useCart from "@/hooks/useCart";
 import { useEffect, useState } from "react";
 import { FaEye,  FaRegHeart } from "react-icons/fa";
-import Ratings from 'react-ratings-declarative';
 import { Link } from "react-router-dom";
 import { CartProductType } from "./ProductDetails";
+import { Rating } from "@mui/material";
 
 interface productCardProps {
     // productName: string;
@@ -39,7 +39,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
   
 
 
-  // const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
+  const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
 
 
   useEffect(()=>{
@@ -107,18 +107,8 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
         </div>
         <div className="flex items-center">
          
-           <Ratings
-            rating={starRatings}
-            widgetRatedColors="rgb(251, 191, 36)"
-            widgetDimensions="20px"
-            widgetSpacings="2px"
-            readonly
-          >
-            {[...Array(5)].map((_, index) => (
-              <Ratings.Widget key={index} />
-            ))}
-          </Ratings>
-          <span className="ml-2 font-poppins font-semibold">({ratings})</span>
+        <Rating value={productRatings} readOnly/>
+          <span className="ml-2 font-poppins font-semibold">({item.reviews.length})</span>
         </div>
        
       </div>

@@ -12,101 +12,9 @@ import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-
-const products = [
-    {
-        productName : 'Breed Dry Dog Food',
-        price: 120,
-        prevPrice: 160,
-        isNew: true,
-        starRatings: 5,
-        ratings: 88,
-        images: [
-            {   
-                color: 'red',
-                productImage : item1,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item1,
-                colorCode: "#DB4444"
-            },
-
-        ]
-        
+import { products } from "@/utils/Products";
 
 
-    },
-    {
-        productName : 'CANON EOS DSLR Camera',
-        price: 960,
-        prevPrice: 1160,
-        isNew: true,
-        starRatings: 4,
-        ratings: 75,
-        images: [
-            {   
-                color: 'red',
-                productImage : item2,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item2,
-                colorCode: "#DB4444"
-            },
-
-        ]
-
-
-    },
-    {
-        productName : 'ASUS FHD Gaming Laptop',
-        price: 370,
-        prevPrice: 400,
-        starRatings: 5,
-        ratings: 99,
-        images: [
-            {   
-                color: 'red',
-                productImage : item3,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item3,
-                colorCode: "#DB4444"
-            },
-
-        ]
-
-
-    },
-    {
-        productName : 'S-Series Comfort Chair',
-        price: 375,
-        prevPrice: 400,
-        isNew: true,
-        starRatings: 4.5,
-        ratings: 99,
-        images: [
-            {   
-                color: 'red',
-                productImage : item4,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item4,
-                colorCode: "#DB4444"
-            },
-
-        ]
-
-
-    },
-]
 const products2 = [
     {
         productName : 'HAVIT HV-G92 Gamepad',
@@ -242,6 +150,8 @@ const settings = {
       ]
   };
 const OurProductsSection = () => {
+
+    const newProducts = products.filter(product=> product.isNew)
     return (
         <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">
@@ -252,7 +162,7 @@ const OurProductsSection = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  products.map((item, index)=> (
+                  newProducts.map((item, index)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  
