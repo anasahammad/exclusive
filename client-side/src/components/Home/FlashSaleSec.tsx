@@ -12,7 +12,8 @@ import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { products } from "@/utils/Products";
+// import { products } from "@/utils/Products";
+import useProducts from "@/hooks/useProducts";
 
 
 // const products = [
@@ -148,6 +149,11 @@ const settings = {
       ]
   };
 const FlashSaleSec = () => {
+
+  const {products, isError, isLoading, error} = useProducts()
+  console.log(products)
+  if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error: {error.message}</div>;
     return (
         <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">
@@ -158,7 +164,7 @@ const FlashSaleSec = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  products.map((item, index)=> (
+                  products?.map((item, index)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  

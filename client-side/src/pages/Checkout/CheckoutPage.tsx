@@ -46,9 +46,21 @@ const CheckoutPage = () => {
       </div>
 
       {/* Payment Icons */}
-      <div className="cursor-pointer">
+      {/* <div className="cursor-pointer">
         <img src={stripe} alt="stripe" className="h-12 w-16" />
         
+      </div> */}
+
+<div className="flex items-center mr-6 ">
+        <input
+          type="radio"
+          id="bank"
+          name="paymentMethod"
+          className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full cursor-pointer"
+        />
+        <label htmlFor="bank" className="ml-2 text-lg cursor-pointer">
+        <img src={stripe} alt="stripe" className="h-12 w-16" />
+        </label>
       </div>
     </div>
 

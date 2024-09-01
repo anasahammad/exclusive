@@ -5,7 +5,7 @@ import { FaRegHeart, FaRegStar, FaUserCircle } from "react-icons/fa";
 import MobileNav from "./MobileNav";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { FiUser } from "react-icons/fi";
-import { RiShoppingBag3Line } from "react-icons/ri";
+import { RiAdminLine, RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import useCart from "@/hooks/useCart";
@@ -112,6 +112,10 @@ const Navbar = () => {
                     <DropdownMenuItem className="flex gap-4 items-center" >
                     <FaRegStar />
                     My Reviews
+                    </DropdownMenuItem> 
+                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <RiAdminLine />
+                     <Link to="/admin">Admin Dashboard</Link>
                     </DropdownMenuItem> 
                     <DropdownMenuItem className="flex gap-4 items-center" >
                     <TbLogout2 />

@@ -8,6 +8,9 @@ import WishList from "@/pages/wishlist/WishList";
 import Login from "@/pages/Login/Login";
 import SignUp from "@/pages/Register/SignUp";
 import CheckoutPage from "@/pages/Checkout/CheckoutPage";
+import AdminPage from "@/Layout/Admin/AdminPage";
+import Summary from "@/Layout/Admin/Summary/Summary";
+import AddProducts from "@/Layout/Admin/Add-products/AddProducts";
 
 export const router = createBrowserRouter([ 
     { 
@@ -41,8 +44,23 @@ export const router = createBrowserRouter([
         {
             path: "/checkout",
             element: <CheckoutPage/>
+        },{
+            path: "/admin",
+            element: <AdminPage/>,
+            children: [
+                {
+                   index: true,
+                    element: <Summary/>
+                },
+                {
+                    path: "/admin/add-products",
+                    element: <AddProducts/>
+                }
+            ]
         }
 
-    ] 
+    ]
     }, 
+
+    
    ]); 
