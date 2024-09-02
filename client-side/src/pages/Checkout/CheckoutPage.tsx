@@ -2,25 +2,45 @@ import useCart from "@/hooks/useCart";
 import CheckoutInput from "./CheckoutInput";
 import PaymentInfo from "./PaymentInfo";
 import stripe from "../../assets/stripe.png"
+import { FieldValues, useForm } from "react-hook-form";
+import useAuth from "@/hooks/useAuth";
 
 const CheckoutPage = () => {
 
   const {cartProducts, cartTotalAmount, shipping, subTotal} = useCart()
+  const {user} = useAuth()
+  const {register, handleSubmit} = useForm<FieldValues>({
+    defaultValues: {
+      name: user?.name,
+      address: "",
+      apartment : "",
+      city: "",
+      phone: "",
+      email: user?.email
+    }
+  })
+
+
+  const onSubmit = async(data: FieldValues)=>{
+    console.log(data)
+  }
     return (
         <div className="py-12">
           <div className="container mx-auto">
 
             <h2 className="font-inter text-4xl font-medium">Billing Details</h2>
-            <div className="flex flex-col md:flex-row my-12 gap-32 items-center ">
+            <form onSubmit={handleSubmit(onSubmit)} action="" className="flex flex-col md:flex-row my-12 gap-32 items-center ">
                     {/* Billing information */}
+
+               
                     <div className="md:w-1/2 flex flex-col gap-8">
-                        <CheckoutInput label="First Name" isRequired type="text"/>
-                        <CheckoutInput label="Company Name" type="text"/>
-                        <CheckoutInput label="Street Address" isRequired type="text"/>
-                        <CheckoutInput label="Apartment, floor, etc. (optional)"  type="text"/>
-                        <CheckoutInput label="Town/City" isRequired type="text"/>
-                        <CheckoutInput label="Phone Number" isRequired type="text"/>
-                        <CheckoutInput label="Email Address" isRequired type="email"/>
+                        <CheckoutInput register={register} id="name" label="First Name" isRequired type="text"/>
+                       
+                        <CheckoutInput register={register} id="address" label="Street Address" isRequired type="text"/>
+                        <CheckoutInput  register={register} id="apartment" label="Apartment, floor, etc. (optional)"  type="text"/>
+                        <CheckoutInput  register={register} id="city" label="Town/City" isRequired type="text"/>
+                        <CheckoutInput  register={register} id="phone" label="Phone Number" isRequired type="text"/>
+                        <CheckoutInput  register={register} id="email" label="Email Address" isRequired type="email"/>
 
                         <div className="font-poppins">
                             <input type="checkbox" className="w-4 h-4 checked:bg-[#DB4444] peer focus:outline-none " /> <span>Save this information for faster check-out next time</span>
@@ -81,9 +101,11 @@ const CheckoutPage = () => {
                     <button className="px-1 md:px-8 py-[12px]  bg-[#DB4444] text-white rounded-sm font-poppins">Apply Coupon</button>
                 </div>
 
-                <button  className="px-6 md:px-12 py-[12px] mt-8  bg-[#DB4444] text-white rounded-sm font-poppins ">Place Order</button>
+                <button type="submit"  className="px-6 md:px-12 py-[12px] mt-8  bg-[#DB4444] text-white rounded-sm font-poppins ">Place Order</button>
                     </div>
-            </div>
+
+                    </form>
+           
           </div>
         </div>
     );

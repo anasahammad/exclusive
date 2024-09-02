@@ -42,17 +42,7 @@ const Navbar = () => {
         },
     ]
 
-    const handleSignOut = () => {
-        logout().then(() => {
-        //   Swal.fire({
-        //     title: "Congratulations!",
-        //     text: "Sign Out Successful",
-        //     icon: "success",
-        //   });
-
-        alert("logout successful")
-        });
-      };
+    
     return (
         <header className="py-4 ">
             <div className="container mx-auto ">
@@ -117,9 +107,9 @@ const Navbar = () => {
                     <RiAdminLine />
                      <Link to="/admin">Admin Dashboard</Link>
                     </DropdownMenuItem> 
-                    <DropdownMenuItem className="flex gap-4 items-center" >
+                    <DropdownMenuItem onClick={logout} className="flex gap-4 items-center" >
                     <TbLogout2 />
-                    <p onClick={handleSignOut}>Logout</p>
+                    Logout
                     </DropdownMenuItem> 
                     </DropdownMenuContent>
                   

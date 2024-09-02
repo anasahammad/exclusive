@@ -1,4 +1,5 @@
 import { auth } from "@/firebase/firebase.config";
+import axios from "axios";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword,  signInWithPopup,  signOut,  User, UserCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
@@ -35,9 +36,16 @@ const [loading, setLoading] = useState(true)
     return signInWithPopup(auth, googleProvider)
    }
 
-   const logout = ()=>{
-    return signOut(auth)
-   }
+   const logout = async () => {
+    try {
+      await axios.get(`${import.meta.env.VITE_BASE_URL}/logout`, { withCredentials: true });
+    } catch (error) {
+      console.error("Error logging out from server:", error);
+    } finally {
+      await signOut(auth);
+    }
+  };
+  
 
    const emailVerification = ()=>{
     if(auth.currentUser !== null){
@@ -48,11 +56,31 @@ const [loading, setLoading] = useState(true)
    const resetPassword = (email: string)=>{
     return sendPasswordResetEmail(auth, email)
    }
+
+
+   const getToken = async email=>{
+    const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, {email}, {withCredentials: true})
+    return data;
+   }
+
+   const saveUser = async user=>{
+        const currentuser = {
+            email: user?.email,
+            role: 'user',
+            status: 'verified'
+        }
+
+        const {data} = await axios.put(`${import.meta.env.VITE_BASE_URL}/user`, currentuser)
+        return data;
+   }
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, currentUser=>{
+            
            if(currentUser){
             setUser(currentUser)
             console.log(currentUser)
+            getToken(currentUser.email)
+            saveUser(currentUser)
             setLoading(false)
            } else{
             setUser(null)
