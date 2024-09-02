@@ -50,7 +50,7 @@ const CartClient = () => {
             <div className="space-y-8 mt-4">
             {
                 cartProducts?.map(item=>{
-                    return <ItemContent key={item.id} item={item}/>
+                    return <ItemContent key={item._id} item={item}/>
                 })
             }
             

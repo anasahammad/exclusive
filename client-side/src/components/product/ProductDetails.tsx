@@ -12,10 +12,11 @@ import { Link } from "react-router-dom";
 
 interface ProductDetailsProps{
     product: any;
+    isLoading: boolean;
 }
 
 export type CartProductType = {
-    id: string,
+    _id: string,
     productName: string,
     description: string,
     category: string,
@@ -34,7 +35,7 @@ export type ColorsType = {
 }
 
 export type ProductType = {
-    id: string,
+    _id: string,
     productName: string,
     description: string,
     category: string,
@@ -43,14 +44,17 @@ export type ProductType = {
     image: string,
 
 }
-const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({product, isLoading}) => {
 
-    const productRatings = product.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product.reviews.length
+    if (isLoading) {
+        return <div>Loading...</div>; // Or handle the error more gracefully
+    }
+    const productRatings = product?.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product?.reviews.length
     const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
     const [isProductInCart, setIsProductInCart] = useState(false)
     const [isProductInWishlist, setIsProductInWishlist] = useState(false)
     const [cartProduct, setCartProduct] = useState<CartProductType>({
-        id: product.id,
+        _id: product._id,
         productName: product.productName,
         description: product.description,
         category: product.category,
@@ -108,7 +112,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
         setIsProductInWishlist(false)
     
         if(wishList){
-          const existingIndex = wishList.findIndex(wishItem=> wishItem.id === product.id)
+          const existingIndex = wishList.findIndex(wishItem=> wishItem._id === product._id)
     
           if(existingIndex > -1){
             setIsProductInWishlist(true)
@@ -126,7 +130,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
                 <div className="flex items-center gap-2">
                 <Rating value={productRatings} readOnly/>
-                <div className="font-poppins text-black text-opacity-50">({product.reviews.length} Reviews)</div> | <span className={`  font-poppins text-opacity-60 ${product.inStock ? 'text-[#00FF66] ' : 'text-[#DB4444]'}`}>{product.inStock ? "In Stock": "Out of Stock"}</span>
+                <div className="font-poppins text-black text-opacity-50">({product?.reviews?.length} Reviews)</div> | <span className={`  font-poppins text-opacity-60 ${product.inStock ? 'text-[#00FF66] ' : 'text-[#DB4444]'}`}>{product.inStock ? "In Stock": "Out of Stock"}</span>
 
                 
             </div>

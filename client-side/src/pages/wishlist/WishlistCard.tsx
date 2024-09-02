@@ -8,7 +8,7 @@ interface WishlistProps{
 }
 
 const WishlistCard: React.FC<WishlistProps> = ({item}) => {
-    const {images, productName, discount, isNew, price, prevPrice, id } = item;
+    const {images, productName, discount, isNew, price, prevPrice, _id } = item;
    
     const [isProductInCart, setIsProductInCart] = useState(false)
     const {cartProducts, handleRemoveFromWishlist} = useCart()
@@ -16,7 +16,7 @@ const WishlistCard: React.FC<WishlistProps> = ({item}) => {
         setIsProductInCart(false)
     
         if(cartProducts){
-          const existingIndex = cartProducts.findIndex(cartItem=> cartItem.id === id)
+          const existingIndex = cartProducts.findIndex(cartItem=> cartItem._id === _id)
     
           if(existingIndex > -1){
             setIsProductInCart(true)
@@ -65,7 +65,7 @@ const WishlistCard: React.FC<WishlistProps> = ({item}) => {
       </div>
      
       <div className="p-4">
-        <Link to={`/details/${id}`} className="text-lg font-medium font-poppins">{ productName}</Link>
+        <Link to={`/details/${_id}`} className="text-lg font-medium font-poppins">{ productName}</Link>
         <div className="flex items-center space-x-2 my-2 font-medium font-poppins">
           <span className="text-[#DB4444]  text-xl">${price}</span>
           {prevPrice && <span className="text-gray-500 line-through">${prevPrice}</span>}

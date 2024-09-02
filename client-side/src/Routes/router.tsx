@@ -44,23 +44,24 @@ export const router = createBrowserRouter([
         {
             path: "/checkout",
             element: <CheckoutPage/>
-        },{
-            path: "/admin",
-            element: <AdminPage/>,
-            children: [
-                {
-                   index: true,
-                    element: <Summary/>
-                },
-                {
-                    path: "/admin/add-products",
-                    element: <AddProducts/>
-                }
-            ]
-        }
+        },
 
     ]
     }, 
+    {
+        path: "/admin",
+        element: <AdminPage/>,
+        children: [
+            {
+               index: true,
+                element: <Summary/>
+            },
+            {
+                path: "/admin/add-products",
+                element: <AddProducts/>
+            }
+        ]
+    }
 
     
    ]); 

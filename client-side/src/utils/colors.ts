@@ -10,13 +10,13 @@ export const colors = [
         
     },
     {
-        color: "Gray",
-        colorCode: "#c0c0c0",
+        color: "Pink",
+        colorCode: "#F88379",
         
     },
     {
-        color: "Silver",
-        colorCode: "#808080",
+        color: "Orange",
+        colorCode: "#FF5733",
         
     },
     {

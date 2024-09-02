@@ -1,8 +1,9 @@
 import ProductCard from "@/components/product/ProductCard";
 import ProductDetails from "@/components/product/ProductDetails";
 import TopContent from "@/components/shared/TopContent";
+import useProducts from "@/hooks/useProducts";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
-import { products } from "@/utils/Products";
+
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -46,11 +47,20 @@ const settings = {
   };
 const ProductDetailsPage = () => {
     const {id} = useParams()
-    const product = products.find(item=> item.id === id)
+    const {products, isLoading} = useProducts()
+    const product = products.find(item=> item._id === id)
+
+    if (isLoading) {
+      return <div>Loading...</div>;
+  }
+
+  if (!product) {
+      return <div>Product not found</div>;
+  }
     return (
         <div className="container mx-auto">
             
-             <ProductDetails product={product}/>
+             <ProductDetails isLoading={isLoading} product={product}/>
 
              <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">

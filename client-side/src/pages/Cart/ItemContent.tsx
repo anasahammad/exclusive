@@ -26,7 +26,7 @@ const ItemContent:React.FC<ItemContentProps> = ({item}) => {
                     </div>
                 </div>
 
-                <div className="inline-flex hover:underline  "><Link to={`/details/${item.id}`}>
+                <div className="inline-flex hover:underline  "><Link to={`/details/${item._id}`}>
                   {(item.productName?.substring(12, 25))}
                 </Link></div>
             </div>

@@ -3,7 +3,7 @@
 export const  products = 
    [
     {   
-        id: "1",
+       
         productName : 'HAVIT HV-G92 Gamepad',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 120,
@@ -84,7 +84,7 @@ export const  products =
 
     },
     {   
-        id: "2",
+     
         productName : 'AK-900 Wired Keyboard',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 960,
@@ -135,7 +135,7 @@ export const  products =
 
     },
     {   
-        id: "3",
+        
         productName : 'IPS LCD Gaming Monitor',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 370,
@@ -187,7 +187,7 @@ export const  products =
 
     },
     {
-        id: "4",
+       
         productName : 'S-Series Comfort Chair',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 375,
@@ -240,7 +240,7 @@ export const  products =
     },
 
     {
-        id: "5",
+        
         productName : 'The north coat',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 375,
@@ -298,7 +298,7 @@ export const  products =
 
     },
     {
-        id: "6",
+      
         productName : 'Gucci duffle bag',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 960,
@@ -355,7 +355,7 @@ export const  products =
 
     },
     {
-        id: "7",
+       
         productName : 'RGB liquid CPU Cooler',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 160,
@@ -407,7 +407,7 @@ export const  products =
 
     },
     {
-        id: "8",
+       
         productName : 'Small BookSelf',
         description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
         price: 360,
@@ -458,7 +458,7 @@ export const  products =
 
     },
     {   
-      id: "9",
+     
       productName : 'Breed Dry Dog Food',
       description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
       price: 120,
@@ -510,7 +510,7 @@ export const  products =
 
   },
     {   
-      id: "10",
+      
       productName : 'CANON EOS DSLR Camera',
       description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
       price: 960,
@@ -562,7 +562,7 @@ export const  products =
 
   },
     {   
-      id: "11",
+      
       productName : 'Kids Electric Car',
       description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
       price: 960,
@@ -614,7 +614,7 @@ export const  products =
 
   },
     {   
-      id: "12",
+     
       productName : 'Jr. Zoom Soccer Cleats',
       description: "PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision",
       price: 1160,

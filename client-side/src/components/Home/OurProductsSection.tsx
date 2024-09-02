@@ -12,104 +12,11 @@ import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { products } from "@/utils/Products";
+
+import useProducts from "@/hooks/useProducts";
 
 
-const products2 = [
-    {
-        productName : 'HAVIT HV-G92 Gamepad',
-        price: 120,
-        prevPrice: 160,
-        isNew: true,
-        starRatings: 5,
-        ratings: 88,
-        images: [
-            {   
-                color: 'white',
-                productImage : item1,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item1,
-                colorCode: "#DB4444"
-            },
 
-        ]
-        
-
-
-    },
-    {
-        productName : 'AK-900 Wired Keyboard',
-        price: 960,
-        prevPrice: 1160,
-        isNew: true,
-        starRatings: 4,
-        ratings: 75,
-        images: [
-            {   
-                color: 'red',
-                productImage : item2,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item2,
-                colorCode: "#DB4444"
-            },
-  
-        ]
-
-
-    },
-    {
-        productName : 'IPS LCD Gaming Monitor',
-        price: 370,
-        prevPrice: 400,
-        
-        starRatings: 5,
-        ratings: 99,
-        images: [
-            {   
-                color: 'red',
-                productImage : item3,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item3,
-                colorCode: "#DB4444"
-            },
-  
-        ]
-
-
-    },
-    {
-        productName : 'S-Series Comfort Chair',
-        price: 375,
-        prevPrice: 400,
-        isNew: true,
-        starRatings: 4.5,
-        ratings: 99,
-        images: [
-            {   
-                color: 'red',
-                productImage : item4,
-                colorCode: "#DB4444"
-            },
-            {   
-                color: 'white',
-                productImage : item4,
-                colorCode: "#DB4444"
-            },
-  
-        ]
-
-
-    },
-]
 
 const settings = {
     dots: false,
@@ -151,6 +58,7 @@ const settings = {
   };
 const OurProductsSection = () => {
 
+    const {products} = useProducts()
     const newProducts = products.filter(product=> product.isNew)
     return (
         <div className="my-12 relative">

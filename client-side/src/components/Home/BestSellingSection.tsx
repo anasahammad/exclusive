@@ -2,12 +2,14 @@ import TopContent from "../shared/TopContent";
 import ProductCard from "../product/ProductCard";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-import { products } from "@/utils/Products";
+
+import useProducts from "@/hooks/useProducts";
 
 
 
 const BestSellingSection = () => {
 
+  const {products} = useProducts()
   const bestSellingProducts = products.filter(product=> product.bestSelling)
     return (
         <div className="my-12 relative">

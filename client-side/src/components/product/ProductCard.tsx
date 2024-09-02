@@ -18,12 +18,12 @@ interface productCardProps {
 }
 
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
-  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, id, colors, description, category} = item;
+  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, _id, colors, description, category} = item;
 
   const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
-    id: id,
+    _id: _id,
     productName: productName,
     description: description,
     category: category,
@@ -46,7 +46,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
     setIsProductInCart(false)
 
     if(cartProducts){
-      const existingIndex = cartProducts.findIndex(cartItem=> cartItem.id === id)
+      const existingIndex = cartProducts.findIndex(cartItem=> cartItem._id === _id)
 
       if(existingIndex > -1){
         setIsProductInCart(true)
@@ -70,7 +70,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
         </div>
         {discount && (
           <span className="absolute top-2 left-2 bg-[#DB4444] font-poppins text-white text-xs px-2 py-1 rounded">
-            {discount}%
+            -{discount}%
           </span>
         )}
         {isNew && !discount && (
@@ -82,7 +82,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           <button onClick={()=>handleAddProductToWishlist(item)} className=" w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full">
           <FaRegHeart className=""/>
           </button>
-          <Link to={`/details/${id}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">
+          <Link to={`/details/${_id}`} className="w-[34px] h-[34px] bg-white p-[5px] flex justify-center items-center rounded-full  ">
             <FaEye />
             
           </Link>
@@ -100,7 +100,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
       </div>
      
       <div className="p-4">
-        <Link to={`/details/${id}`} className="text-lg font-medium font-poppins">{ productName}</Link>
+        <Link to={`/details/${_id}`} className="text-lg font-medium font-poppins">{ productName}</Link>
         <div className="flex items-center space-x-2 my-2 font-medium font-poppins">
           <span className="text-[#DB4444]  text-xl">${price}</span>
           {prevPrice && <span className="text-gray-500 line-through">${prevPrice}</span>}
@@ -108,7 +108,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
         <div className="flex items-center">
          
         <Rating value={productRatings} readOnly/>
-          <span className="ml-2 font-poppins font-semibold">({item.reviews.length})</span>
+          <span className="ml-2 font-poppins font-semibold">({item?.reviews?.length})</span>
         </div>
        
       </div>

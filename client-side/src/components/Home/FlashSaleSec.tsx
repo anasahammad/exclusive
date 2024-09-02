@@ -164,7 +164,7 @@ const FlashSaleSec = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  products?.map((item, index)=> (
+                  products?.slice(0, 8).map((item, index)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  
