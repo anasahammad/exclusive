@@ -10,10 +10,11 @@ app.use(express.json())
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const corseOptions = {
-  origin: ["http://localhost:5173"]
+  origin: ["http://localhost:5173"],
+  credentials: true,
 }
-app.use(cors())
-app.use(cookieParser(corseOptions))
+app.use(cors(corseOptions))
+app.use(cookieParser())
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.goboxhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -112,24 +113,17 @@ async function run() {
 
   
     //payment-intent
-    app.post("/create-payment-intent", async (req, res) => {
-      const { amount, paymentMethodId } = req.body;
+    app.post('/create-payment-intent', async(req, res)=>{
+      const {subTotal} = req.body;
+     const amount = subTotal * 100 
+     console.log(amount);
+     const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency : 'usd',
+      payment_method_types : ['card']
+     })
 
-      try {
-        const paymentIntent = await stripe.paymentIntents.create({
-          amount: amount,
-          currency: "usd",
-          payment_method: paymentMethodId,
-          confirmation_method: "manual",
-          confirm: true
-        });
-        res.send({
-          success: true,
-          clientSecret: paymentIntent.client_secret,
-        });
-      } catch (error) {
-        res.status(500).send({ error: error.message });
-      }
+     res.send({clientSecret: paymentIntent.client_secret})
     })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
