@@ -115,6 +115,7 @@ const CheckoutPage: React.FC = () => {
 
   const handleSubmitOrder = async (stripePaymentIntentId: string) => {
     const orderData = {
+      userId: user?.uid,
       billingDetails: {
         name: watch("name"),
         address: watch("address"),
@@ -147,6 +148,7 @@ const CheckoutPage: React.FC = () => {
     } else {
       // For other payment methods, submit the order directly
       const orderData = {
+        userId: user?.uid,
         billingDetails: {
           name: data.name,
           address: data.address,

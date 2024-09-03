@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const cors = require("cors")
 const port = process.env.PORT || 5000
@@ -111,7 +111,20 @@ async function run() {
       res.send(result)
     })
 
-  
+    //get all orders
+    app.get("/orders", async(req, res)=>{
+      const result = await orderCollection.find().toArray()
+      res.send(result)
+    })
+
+    //get order for specific user
+    app.get("/my-order/:userId", async(req, res)=>{
+      const userId = req.params.userId;
+      console.log(userId)
+      const query = {userId: userId}
+      const result = await orderCollection.find(query).toArray()
+      res.send(result)
+    })
     //payment-intent
     app.post('/create-payment-intent', async(req, res)=>{
       const {subTotal} = req.body;
