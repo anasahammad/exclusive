@@ -7,9 +7,13 @@ const port = process.env.PORT || 5000
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 app.use(express.json())
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+const corseOptions = {
+  origin: ["http://localhost:5173"]
+}
 app.use(cors())
-app.use(cookieParser())
+app.use(cookieParser(corseOptions))
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.goboxhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -31,7 +35,7 @@ async function run() {
     const db = await client.db("mobilemart")
     const productCollection = db.collection("products")
     const usersCollection = db.collection("users")
-
+    const orderCollection = db.collection("orders")
 
     //auth related api
     app.post("/jwt", async(req, res)=>{
@@ -96,6 +100,36 @@ async function run() {
       const result = await productCollection.insertOne(product)
 
       res.send(result)
+    })
+
+
+    //post orders on database
+    app.put("/order", async(req, res)=>{
+      const order = await req.body;
+      const result = await orderCollection.insertOne(order)
+      res.send(result)
+    })
+
+  
+    //payment-intent
+    app.post("/create-payment-intent", async (req, res) => {
+      const { amount, paymentMethodId } = req.body;
+
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount: amount,
+          currency: "usd",
+          payment_method: paymentMethodId,
+          confirmation_method: "manual",
+          confirm: true
+        });
+        res.send({
+          success: true,
+          clientSecret: paymentIntent.client_secret,
+        });
+      } catch (error) {
+        res.status(500).send({ error: error.message });
+      }
     })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

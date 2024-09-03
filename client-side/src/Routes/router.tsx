@@ -11,6 +11,7 @@ import CheckoutPage from "@/pages/Checkout/CheckoutPage";
 import AdminPage from "@/Layout/Admin/AdminPage";
 import Summary from "@/Layout/Admin/Summary/Summary";
 import AddProducts from "@/Layout/Admin/Add-products/AddProducts";
+import CheckOut from "@/pages/Checkout/CheckOut";
 
 export const router = createBrowserRouter([ 
     { 
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
         },
         {
             path: "/checkout",
-            element: <CheckoutPage/>
+            element: <CheckOut/>
         },
 
     ]

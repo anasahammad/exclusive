@@ -1,31 +1,121 @@
 import useCart from "@/hooks/useCart";
 import CheckoutInput from "./CheckoutInput";
 import PaymentInfo from "./PaymentInfo";
-import stripe from "../../assets/stripe.png"
+import stripeImage from "../../assets/stripe.png"
 import { FieldValues, useForm } from "react-hook-form";
 import useAuth from "@/hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+
 
 const CheckoutPage = () => {
-
+  const stripe = useStripe()
+  const elements = useElements()
+  const [isStripePayment, setIsStripePayment] = useState(false)
   const {cartProducts, cartTotalAmount, shipping, subTotal} = useCart()
   const {user} = useAuth()
+  const navigate = useNavigate()
   const {register, handleSubmit} = useForm<FieldValues>({
     defaultValues: {
-      name: user?.name,
+      name: user?.displayName,
       address: "",
       apartment : "",
       city: "",
       phone: "",
-      email: user?.email
+      email: user?.email,
+
+    }
+  })
+
+ useEffect(()=>{
+  if(cartProducts?.length === 0){
+    navigate("/")
+  }
+ }, [cartProducts, navigate])
+  
+  const {mutateAsync} = useMutation({
+    mutationFn: async(data: FieldValues)=>{
+      const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/order`, data)
+      return response.data;
+    },
+    onSuccess: ()=>{
+      console.log("Order success")
+      window.location.reload()
+      localStorage.removeItem("exclusiveCart")
+      navigate("/")
     }
   })
 
 
+  const handlePayment = async ()=>{
+    if(!stripe || !elements) return
+
+    const cardElement = elements.getElement(CardElement)
+
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement
+    }) 
+    if(error){
+      console.log(error)
+      return
+    }
+
+    const {id: paymentMethodId} = paymentMethod;
+    try {
+      const paymentIntent = await axios.post(`${import.meta.env.VITE_BASE_URL}/create-payment-intent`, {
+        amount: subTotal * 100,
+        paymentMethod
+      })
+
+      await handleSubmitOrder(paymentIntent.data.id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+const handleSubmitOrder = async (stripePaymentIntentId: string)=>{
+
+  const data = {};
+  const orderData = {
+    billingDetails: data,
+    status: "pending",
+    products: cartProducts,
+    amount: subTotal,
+    createdAt: new Date().toISOString(),
+    deliveryStatus: "pending",
+    stripePaymentIntentId
+    
+  }
+
+  try {
+    await mutateAsync(orderData)
+
+    return alert("Ordered Successful")
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
   const onSubmit = async(data: FieldValues)=>{
     console.log(data)
+    if(data.paymentMethod === "stripe"){
+      setIsStripePayment(true)
+
+    } else{
+     await handleSubmitOrder()
+    }
+   
+    
+
   }
     return (
-        <div className="py-12">
+    
           <div className="container mx-auto">
 
             <h2 className="font-inter text-4xl font-medium">Billing Details</h2>
@@ -57,7 +147,9 @@ const CheckoutPage = () => {
         <input
           type="radio"
           id="bank"
+          {...register("paymentMethod")}
           name="paymentMethod"
+          value="bank"
           className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full cursor-pointer"
         />
         <label htmlFor="bank" className="ml-2 text-lg cursor-pointer">
@@ -74,12 +166,14 @@ const CheckoutPage = () => {
 <div className="flex items-center mr-6 ">
         <input
           type="radio"
-          id="bank"
+          id="stripe"
+          {...register("paymentMethod")}
           name="paymentMethod"
+          value="stripe"
           className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full cursor-pointer"
         />
-        <label htmlFor="bank" className="ml-2 text-lg cursor-pointer">
-        <img src={stripe} alt="stripe" className="h-12 w-16" />
+        <label htmlFor="stripe" className="ml-2 text-lg cursor-pointer">
+        <img src={stripeImage} alt="stripe" className="h-12 w-16" />
         </label>
       </div>
     </div>
@@ -88,7 +182,9 @@ const CheckoutPage = () => {
         <input
           type="radio"
           id="cash"
+          {...register("paymentMethod")}
           name="paymentMethod"
+          value="cash"
           className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full cursor-pointer"
         />
         <label htmlFor="cash" className="ml-2 text-lg cursor-pointer">
@@ -101,13 +197,50 @@ const CheckoutPage = () => {
                     <button className="px-1 md:px-8 py-[12px]  bg-[#DB4444] text-white rounded-sm font-poppins">Apply Coupon</button>
                 </div>
 
-                <button type="submit"  className="px-6 md:px-12 py-[12px] mt-8  bg-[#DB4444] text-white rounded-sm font-poppins ">Place Order</button>
-                    </div>
+
+        
+               
+            {isStripePayment && (
+              <div className="mt-8">
+                <CardElement
+                  options={{
+                    style: {
+                      base: {
+                        fontSize: "16px",
+                        color: "#424770",
+                        "::placeholder": {
+                          color: "#aab7c4",
+                        },
+                      },
+                      invalid: {
+                        color: "#9e2146",
+                      },
+                    },
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={handlePayment}
+                  className="px-6 md:px-12 py-[12px] mt-8  bg-[#DB4444] text-white rounded-sm font-poppins "
+                >
+                  Confirm and Pay
+                </button>
+              </div>
+            )}
+            {!isStripePayment && (
+              <button
+                type="submit"
+                className="px-6 md:px-12 py-[12px] mt-8  bg-[#DB4444] text-white rounded-sm font-poppins "
+              >
+                Place Order
+              </button>
+            )}
+          </div>
 
                     </form>
            
           </div>
-        </div>
+        
     );
 };
 

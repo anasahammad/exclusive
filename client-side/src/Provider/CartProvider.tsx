@@ -62,7 +62,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
 
     const handleAddProductToWishlist = useCallback((product: ProductType)=>{
         
-        const isExist = wishList?.find(item=> item.id === product.id)
+        const isExist = wishList?.find(item=> item._id === product._id)
         if(isExist){
             return alert("The product is already added on the wishlist")
         }
@@ -122,7 +122,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const handleRemoveFromCart = useCallback((product: CartProductType)=>{
         if(product){
             const filterProducts = cartProducts?.filter((item)=>{
-                return item.id !== product.id
+                return item._id !== product._id
             })
 
             setCartProducts(filterProducts)
@@ -134,7 +134,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const handleRemoveFromWishlist = useCallback((product: ProductType)=>{
         if(product){
             const filterProducts = wishList?.filter((item)=>{
-                return item.id !== product.id
+                return item._id !== product._id
             })
 
             setWishlist(filterProducts)
@@ -151,7 +151,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
 
         if(cartProducts){
             updatedCart = [...cartProducts]
-            const existingIndex = cartProducts.findIndex((item)=>item.id === product.id)
+            const existingIndex = cartProducts.findIndex((item)=>item._id === product._id)
 
             if(existingIndex > -1){
                 updatedCart[existingIndex].quantity = ++updatedCart[existingIndex].quantity;
@@ -170,7 +170,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
 
         if(cartProducts){
             updatedCart = [...cartProducts]
-            const existingIndex = cartProducts.findIndex((item)=>item.id === product.id)
+            const existingIndex = cartProducts.findIndex((item)=>item._id === product._id)
 
             if(existingIndex > -1){
                 updatedCart[existingIndex].quantity = --updatedCart[existingIndex].quantity;
