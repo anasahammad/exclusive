@@ -7,6 +7,7 @@ const useProducts = () => {
     isError,
     data: products = [],
     error,
+    refetch
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -15,7 +16,7 @@ const useProducts = () => {
     },
   });
 
-  return { products, isLoading, isError, error };
+  return { products, isLoading, isError, error, refetch };
 };
 
 export default useProducts;

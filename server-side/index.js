@@ -103,6 +103,32 @@ async function run() {
       res.send(result)
     })
 
+    //update product status in stock
+    app.put("/update-inStock", async(req, res)=>{
+      const {id} = req.body;
+    
+      const query = {_id: new ObjectId(id)}
+      const product = await productCollection.findOne(query)
+
+      if(!product){
+        return res.status(404).send({message: "Product not found"})
+      }
+
+      const result = await productCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { inStock: !product.inStock } }
+      );
+
+      res.send(result)
+    })
+    //delete product by id
+    app.delete("/delete-product/:id", async(req, res)=>{
+      const id = req.params.id;
+      console.log(id)
+      const query = {_id: new ObjectId(id)}
+      const result = await productCollection.deleteOne(query)
+      res.send(result)
+    })
 
     //post orders on database
     app.put("/order", async(req, res)=>{

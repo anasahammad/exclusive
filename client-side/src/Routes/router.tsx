@@ -16,6 +16,7 @@ import MyOrders from "@/pages/UserRoute/MyOrder/MyOrders";
 import CategoryPage from "@/components/Home/CategoryPage";
 import AllProducts from "@/pages/product/AllProducts";
 import BestSellingProduct from "@/components/product/BestSellingProduct";
+import ManageProducts from "@/Layout/Admin/Manage-products/ManageProducts";
 
 export const router = createBrowserRouter([ 
     { 
@@ -80,7 +81,12 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/add-products",
                 element: <AddProducts/>
-            }
+            },
+            {
+                path: "/admin/manage-products",
+                element: <ManageProducts/>
+            },
+            
         ]
     }
 
