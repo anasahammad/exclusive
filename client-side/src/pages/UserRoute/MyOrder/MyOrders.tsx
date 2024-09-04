@@ -8,7 +8,7 @@ import OrderContent from "./OrderContent";
 const MyOrders = () => {
 
     const {user} = useAuth()
-    const {data: myOrders = []} = useQuery({
+    const {data: myOrders = [], isLoading} = useQuery({
         queryKey: ["my-orders"],
         queryFn: async ()=>{
             const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/my-order/${user?.uid}`)
@@ -17,15 +17,20 @@ const MyOrders = () => {
         }
     })
 
+
+    if(isLoading){
+        return <div>Loading.....</div>
+    }
+    
     console.log(myOrders)
     return (
         <div className="py-12">
             <div className="container mx-auto">
-                <TopContent text="" heading="My Orders"/>
-                <div >
+                <TopContent text="orders" heading="My All Orders"/>
+                <div className="my-8">
                 {
                     myOrders.map(item=> {
-                        return <OrderContent key={item._id} item={item}/>
+                        return <OrderContent isLoading={isLoading} key={item._id} item={item}/>
                     })
                 }
                 </div>
