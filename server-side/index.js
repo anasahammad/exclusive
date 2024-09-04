@@ -120,9 +120,17 @@ async function run() {
     //get order for specific user
     app.get("/my-order/:userId", async(req, res)=>{
       const userId = req.params.userId;
-      console.log(userId)
+      
       const query = {userId: userId}
       const result = await orderCollection.find(query).toArray()
+      res.send(result)
+    })
+
+    //get product by category
+    app.get("/product-category/:category", async(req, res)=>{
+      const category = req.params.category;
+      const query = {category : category}
+      const result = await productCollection.find(query).toArray()
       res.send(result)
     })
     //payment-intent

@@ -5,6 +5,9 @@ import Slider from "react-slick";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
+
+
 
 const settings = {
     dots: false,
@@ -44,6 +47,14 @@ const settings = {
       ]
   };
 const BrouseByCategorySec = () => {
+
+  const navigate = useNavigate()
+
+
+  const handleCategory = (category: string)=>{
+    navigate(`/product-category/${category}`)
+    console.log(category)
+  }
     return (
         <div className="my-12 relative">
                 <div className="">
@@ -54,7 +65,7 @@ const BrouseByCategorySec = () => {
                     <Slider {...settings}>
                         {
                             categories?.map((item, index)=>{
-                                return <CategoryCard  key={index} title={item.title} icon={item.icon}/>
+                                return <CategoryCard handleCategory={handleCategory} key={index} title={item.title} icon={item.icon}/>
                             })
                         }
                         </Slider>

@@ -13,6 +13,7 @@ import Summary from "@/Layout/Admin/Summary/Summary";
 import AddProducts from "@/Layout/Admin/Add-products/AddProducts";
 import CheckOut from "@/pages/Checkout/CheckOut";
 import MyOrders from "@/pages/UserRoute/MyOrder/MyOrders";
+import CategoryPage from "@/components/Home/CategoryPage";
 
 export const router = createBrowserRouter([ 
     { 
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
         {
             path: "/my-order",
             element: <MyOrders/>
+        },
+        {
+            path: "/product-category/:category",
+            element: <CategoryPage/>
         }
 
     ]
