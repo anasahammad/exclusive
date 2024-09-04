@@ -12,6 +12,7 @@ import AdminPage from "@/Layout/Admin/AdminPage";
 import Summary from "@/Layout/Admin/Summary/Summary";
 import AddProducts from "@/Layout/Admin/Add-products/AddProducts";
 import CheckOut from "@/pages/Checkout/CheckOut";
+import MyOrders from "@/pages/UserRoute/MyOrder/MyOrders";
 
 export const router = createBrowserRouter([ 
     { 
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             path: "/checkout",
             element: <CheckOut/>
         },
+        {
+            path: "/my-order",
+            element: <MyOrders/>
+        }
 
     ]
     }, 

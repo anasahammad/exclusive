@@ -243,10 +243,10 @@ const CheckoutPage: React.FC = () => {
           <div className="flex items-center mr-6 mt-4 font-poppins px-8 md:px-0">
             <input
               type="radio"
-              id="cash"
+              id="cod"
               {...register("paymentMethod")}
               name="paymentMethod"
-              value="cash"
+              value="cod"
               className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full cursor-pointer"
             />
             <label htmlFor="cash" className="ml-2 text-lg cursor-pointer">

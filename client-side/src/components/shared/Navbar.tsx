@@ -91,9 +91,9 @@ const Navbar = () => {
                     <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
                     Manage My Account
                     </DropdownMenuItem> 
-                    <DropdownMenuItem className="flex gap-4 items-center" >
-                    <RiShoppingBag3Line />
-                    My Order
+                    <DropdownMenuItem  >
+                   <Link to="/my-order" className="flex gap-4 items-center"> <RiShoppingBag3Line />
+                   My Order</Link>
                     </DropdownMenuItem> 
                     <DropdownMenuItem className="flex gap-4 items-center" >
                     <MdOutlineCancel />
