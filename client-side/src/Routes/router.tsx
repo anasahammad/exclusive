@@ -14,6 +14,8 @@ import AddProducts from "@/Layout/Admin/Add-products/AddProducts";
 import CheckOut from "@/pages/Checkout/CheckOut";
 import MyOrders from "@/pages/UserRoute/MyOrder/MyOrders";
 import CategoryPage from "@/components/Home/CategoryPage";
+import AllProducts from "@/pages/product/AllProducts";
+import BestSellingProduct from "@/components/product/BestSellingProduct";
 
 export const router = createBrowserRouter([ 
     { 
@@ -55,6 +57,14 @@ export const router = createBrowserRouter([
         {
             path: "/product-category/:category",
             element: <CategoryPage/>
+        },
+        {
+            path: "/all-products",
+            element: <AllProducts/>
+        },
+        {
+            path: "/best-selling",
+            element: <BestSellingProduct/>
         }
 
     ]

@@ -78,7 +78,7 @@ const OurProductsSection = () => {
             </Slider>
                 
             
-               <Link to="" className="flex justify-center items-center mt-8"> <Button className="bg-[#DB4444] w-[234px]">View All Products</Button></Link>
+               <Link to="/all-products" className="flex justify-center items-center mt-8"> <Button className="bg-[#DB4444] w-[234px]">View All Products</Button></Link>
             </div>
         </div>
     );

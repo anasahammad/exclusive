@@ -42,6 +42,7 @@ export type ProductType = {
     price: number,
     size: string,
     image: string,
+    bestSelling?: boolean
 
 }
 const ProductDetails: React.FC<ProductDetailsProps> = ({product, isLoading}) => {
