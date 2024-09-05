@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 app.use(express.json())
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { v4: uuidv4 } = require('uuid');
 
 const corseOptions = {
   origin: ["http://localhost:5173"],
@@ -132,11 +133,22 @@ async function run() {
 
     //post orders on database
     app.put("/order", async(req, res)=>{
-      const order = await req.body;
+      const order =  req.body;
+      const uniqueId = uuidv4()
+      const smallId = uniqueId.slice(0, 16)
+     
+      order.orderId = smallId;
       const result = await orderCollection.insertOne(order)
       res.send(result)
     })
 
+    //get order details
+    app.get("/order-details/:orderId", async(req, res)=>{
+      const orderId = req.params.orderId;
+      const query = {orderId: orderId}
+      const result = await orderCollection.findOne(query)
+      res.send(result)
+    })
     //get all orders
     app.get("/orders", async(req, res)=>{
       const result = await orderCollection.find().toArray()
@@ -159,6 +171,25 @@ async function run() {
       const result = await productCollection.find(query).toArray()
       res.send(result)
     })
+
+ //update order status
+ app.put("/update-status", async(req, res)=>{
+  const {orderId, newStatus, newDeliveryStatus} = req.body;
+  
+  
+  const query = {orderId: orderId}
+  const updateDoc = {
+    $set: {
+      status: newStatus,
+      deliveryStatus: newDeliveryStatus
+    }
+  }
+
+  const result = await orderCollection.updateOne(query, updateDoc)
+
+  res.send(result)
+})
+
     //payment-intent
     app.post('/create-payment-intent', async(req, res)=>{
       const {subTotal} = req.body;

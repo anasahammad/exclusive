@@ -66,7 +66,7 @@ const CheckoutPage: React.FC = () => {
       localStorage.removeItem("exclusiveCart");
       navigate("/");
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       console.error("Order failed:", error);
       // toast.error("Failed to place order. Please try again.");
     },
@@ -124,11 +124,11 @@ const CheckoutPage: React.FC = () => {
         phone: watch("phone"),
         email: watch("email"),
       },
-      status: "pending",
+      status: "Pending",
       products: cartProducts,
       amount: subTotal,
       createdAt: new Date().toISOString(),
-      deliveryStatus: "pending",
+      deliveryStatus: "Pending",
       stripePaymentIntentId,
       paymentMethod: "stripe",
     };
@@ -157,11 +157,11 @@ const CheckoutPage: React.FC = () => {
           phone: data.phone,
           email: data.email,
         },
-        status: "pending",
+        status: "Pending",
         products: cartProducts,
         amount: subTotal,
         createdAt: new Date().toISOString(),
-        deliveryStatus: "pending",
+        deliveryStatus: "Pending",
         stripePaymentIntentId: null, // No Stripe payment
         paymentMethod: data.paymentMethod,
       };

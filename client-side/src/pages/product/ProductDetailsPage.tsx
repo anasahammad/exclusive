@@ -50,6 +50,7 @@ const ProductDetailsPage = () => {
     const {products, isLoading} = useProducts()
     const product = products.find(item=> item._id === id)
 
+    
     if (isLoading) {
       return <div>Loading...</div>;
   }

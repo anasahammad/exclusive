@@ -94,7 +94,7 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
           <button  className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
           Vew Cart
         </button>
-         </Link> :  <button onClick={()=>handleAddProductToCart(cartProduct)} className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
+         </Link> :  <button disabled={!item.inStock} onClick={()=>handleAddProductToCart(cartProduct)} className="mt-4 bottom-0 w-full absolute bg-black text-white text-center font-medium font-poppins py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-colors duration-300">
           Add To Cart
         </button>}
       </div>

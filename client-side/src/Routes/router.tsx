@@ -17,6 +17,8 @@ import CategoryPage from "@/components/Home/CategoryPage";
 import AllProducts from "@/pages/product/AllProducts";
 import BestSellingProduct from "@/components/product/BestSellingProduct";
 import ManageProducts from "@/Layout/Admin/Manage-products/ManageProducts";
+import ManageOrders from "@/Layout/Admin/ManageOrders/ManageOrders";
+import OrderDetails from "@/Layout/Admin/ManageOrders/OrderDetails";
 
 export const router = createBrowserRouter([ 
     { 
@@ -85,6 +87,14 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/manage-products",
                 element: <ManageProducts/>
+            },
+            {
+                path: "/admin/manage-orders",
+                element: <ManageOrders/>
+            },
+            {
+                path: "/admin/order-details/:id",
+                element: <OrderDetails/>
             },
             
         ]

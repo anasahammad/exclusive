@@ -99,9 +99,7 @@ const ManageProductsTable: React.FC<ManageProductsTableProps> = ({products, refe
     }
     return (
         <div>
-          <div className="text-center  mb-6">
-            <h1>Manage Products</h1>
-          </div>
+          
           <Paper sx={{ height: 500, width: '100%' }}>
       <DataGrid
         rows={rows}

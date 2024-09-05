@@ -49,9 +49,7 @@ export type ProductType = {
 }
 const ProductDetails: React.FC<ProductDetailsProps> = ({product, isLoading}) => {
 
-    if (isLoading) {
-        return <div>Loading...</div>; // Or handle the error more gracefully
-    }
+    
     const productRatings = product?.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product?.reviews.length
     const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
     const [isProductInCart, setIsProductInCart] = useState(false)
@@ -157,7 +155,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product, isLoading}) => 
 
                     {isProductInCart ? <Link to="/cart">
                         <button className="px-6 md:px-12 py-[10px] border-[1.5px] border-[#00000066] font-medium  rounded-sm">View Cart</button>
-                    </Link> : <button onClick={()=>handleAddProductToCart(cartProduct)} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Add to Cart</button>}
+                    </Link> : <button disabled={!product.inStock} onClick={()=>handleAddProductToCart(cartProduct)} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Add to Cart</button>}
                     
                     <button disabled={isProductInWishlist} onClick={()=>handleAddProductToWishlist(product)} className="border cursor-pointer  inline-flex items-center justify-center rounded-sm p-2 w-[40px] h-[40px]">
                 <FaRegHeart/>
