@@ -10,20 +10,22 @@ type User = {
 };
 
 const useRole = () => {
-    const {user} = useAuth()
-  const { data: role = '', isLoading } = useQuery<User[]>({
+  const { user } = useAuth();
+
+  const { data } = useQuery<User>({
     queryKey: ["role", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/${user?.email}`);
-      return res.data.role;
+      const res = await axios.get<User>(`${import.meta.env.VITE_BASE_URL}/users/${user?.email}`);
+      console.log(res.data);
+      return res.data;
     },
+    enabled: !!user?.email, // Only fetch if user.email is defined
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  // Extract role, default to empty string if data is not available
+  const role = data?.role || "";
 
-
-
-  return {role, isLoading};
+  return { role };
 };
 
 export default useRole;

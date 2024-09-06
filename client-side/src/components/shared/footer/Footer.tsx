@@ -6,8 +6,8 @@ import { VscSend } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import qrCode from  "../../../assets/Qr Code.png"
 import googlePlay from  "../../../assets/GooglePlay.png"
-import appleStore from  "../../../assets/AppStore.png"
-import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaInstagram } from "react-icons/fa6";
 

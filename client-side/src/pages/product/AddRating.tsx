@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 interface AddRatingProps{
     product: ProductType,
-    user: User,
+    user: User | null,
     refetch : ()=> void
 }
 
@@ -23,7 +23,7 @@ type RatingData = {
   };
 const AddRating: React.FC<AddRatingProps> = ({product, user, refetch}) => {
     const navigate = useNavigate()
-    const {register, handleSubmit, setValue, reset, formState: {errors}} = useForm<FieldValues>({
+    const {register, handleSubmit, setValue, reset} = useForm<FieldValues>({
         defaultValues: {
             comment: "",
             rating: 0
@@ -89,7 +89,7 @@ const AddRating: React.FC<AddRatingProps> = ({product, user, refetch}) => {
     return (
         <div className="flex flex-col gap-2 max-w-[500px] ">
             <TopContent text="Rate This Product"/>
-            <Rating onChange={(event, newValue)=>{
+            <Rating onChange={(_, newValue)=>{
                 setCustomValue('rating', newValue)
             }}/>
 

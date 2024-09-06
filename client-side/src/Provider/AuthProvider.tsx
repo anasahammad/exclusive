@@ -58,12 +58,12 @@ const [loading, setLoading] = useState(true)
    }
 
 
-   const getToken = async email=>{
+   const getToken = async (email: any)=>{
     const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, {email}, {withCredentials: true})
     return data;
    }
 
-   const saveUser = async user=>{
+   const saveUser = async (user: any)=>{
         const currentuser = {
             email: user?.email,
             role: 'user',

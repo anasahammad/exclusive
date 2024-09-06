@@ -9,7 +9,7 @@ import TopContent from "@/components/shared/TopContent";
 
 const ManageOrders = () => {
     
-    const {orders, isLoading, refetch} = useOrders()
+    const {orders, isLoading} = useOrders()
 
    if(isLoading){
     return <div>Loading....</div>

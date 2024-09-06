@@ -64,7 +64,7 @@ const ProductDetailsPage = () => {
     return (
         <div className="container mx-auto">
             
-             <ProductDetails isLoading={isLoading} product={product}/>
+             <ProductDetails  product={product}/>
 
              <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">

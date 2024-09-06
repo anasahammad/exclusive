@@ -1,11 +1,11 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
-interface SlickPrevArrowProps{
-  style: string,
-  onClick : ()=> void
-}
-export const SlickPrevArrow = (props: {props: SlickPrevArrowProps})=>{
+// interface SlickPrevArrowProps{
+//   style?: string,
+//   onClick ?: ()=> void
+// }
+export const SlickPrevArrow = (props: any)=>{
     const {  style, onClick } = props;
     return (
       <div
@@ -17,7 +17,7 @@ export const SlickPrevArrow = (props: {props: SlickPrevArrowProps})=>{
     );
 }
 
-export const SlickNextArrow = (props)=>{
+export const SlickNextArrow = (props: any)=>{
     const {  style, onClick } = props;
     return (
       <div

@@ -25,7 +25,11 @@ const Navbar = () => {
     const {cartTotalQty, wishList} = useCart()
     const {logout, user, } = useAuth()
     const {role} = useRole()
-    // console.log(role)
+
+
+   
+    
+    console.log(role)
     const navLinks:LinkProps[]  = [
         {
             path: '/',
@@ -96,7 +100,7 @@ const Navbar = () => {
                    <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
                     Manage My Account
                     </DropdownMenuItem> 
-                    {role === "user"  ? <>
+                    {role !== "admin"  ? <>
                         
                     <DropdownMenuItem  >
                    <Link to="/my-order" className="flex gap-4 items-center"> <RiShoppingBag3Line />

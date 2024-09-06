@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 interface ProductDetailsProps{
     product: any;
-    isLoading: boolean;
+   
 }
 
 export type CartProductType = {
@@ -45,9 +45,10 @@ export type ProductType = {
     bestSelling?: boolean,
     inStock?: boolean,
     brand: string,
+    isNew?: boolean
 
 }
-const ProductDetails: React.FC<ProductDetailsProps> = ({product, isLoading}) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
     
     const productRatings = product?.reviews.reduce((acc:number, item:any) => item.rating + acc, 0) / product?.reviews.length

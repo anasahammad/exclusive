@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CartProductType,  } from "./ProductDetails";
-import ReactImageMagnify from 'react-image-magnify';
+
+// import ReactImageMagnify from 'react-image-magnify';
 interface ProductImageProps{
     // cartProduct : CartProductType;
     product: any;
@@ -27,10 +27,10 @@ const ProductImage: React.FC<ProductImageProps> = ({product  }) => {
                 }
             </div>
             <div className="col-span-4 bg-[#F5F5F5] relative aspect-square py-10 px-4">
-                {/* <img src={selectedImg}
-                  alt=""  className="object-contain  w-full h-full  max-h-[500px] min-h-[300px] sm:min-h-[400px] "/> */}
+                <img src={selectedImg}
+                  alt=""  className="object-contain  w-full h-full  max-h-[500px] min-h-[300px] sm:min-h-[400px] "/>
 
-<div className="w-full h-full  max-h-[500px] min-h-[300px] sm:min-h-[400px] z-10">
+{/* <div className="w-full h-full  max-h-[500px] min-h-[300px] sm:min-h-[400px] z-10">
 <ReactImageMagnify
                         {...{
                             smallImage: {
@@ -50,7 +50,7 @@ const ProductImage: React.FC<ProductImageProps> = ({product  }) => {
                             
                         }}
                     />
-</div>
+</div> */}
             </div>
         </div>
     );
