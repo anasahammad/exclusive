@@ -91,7 +91,26 @@ async function run() {
     })
 
     app.get('/products', async(req, res)=>{
-        const result = await productCollection.find().toArray();
+      const sort = req?.query.sort;
+      const category = req.query.categories;
+    
+      let query = {}
+      let sortOptions = {}
+      if (category) {
+        query.category = category;
+      }
+
+      if (sort) {
+        if (sort === 'low') {
+          sortOptions = { price: 1 };
+        } else if (sort === 'high') {
+          sortOptions = { price: -1 };
+        }  
+        else {
+          sortOptions = { name: 1 };
+        }
+      }
+        const result = await productCollection.find(query).sort(sortOptions).toArray();
         res.send(result)
     })
 
