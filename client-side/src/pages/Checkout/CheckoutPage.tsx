@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import toast from "react-hot-toast";
 // import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
 
 const CheckoutPage: React.FC = () => {
@@ -31,7 +32,8 @@ const CheckoutPage: React.FC = () => {
       paymentMethod: "cash", // Set default payment method
     },
   });
-
+ 
+  console.log(isStripePayment)
   // Watch paymentMethod to conditionally render Stripe payment fields
   const paymentMethod = watch("paymentMethod");
 
@@ -68,7 +70,7 @@ const CheckoutPage: React.FC = () => {
     },
     onError: (error: Error) => {
       console.error("Order failed:", error);
-      // toast.error("Failed to place order. Please try again.");
+      toast.error("Failed to place order. Please try again.");
     },
   });
 
@@ -79,14 +81,14 @@ const CheckoutPage: React.FC = () => {
     if (!card) return;
 
     // Create payment method
-    const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
+    const { error: paymentMethodError } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (paymentMethodError) {
       console.error(paymentMethodError.message);
-      // toast.error(paymentMethodError.message);
+      // toast.error(paymentMethodError?.message);
       return;
     }
 
@@ -137,7 +139,7 @@ const CheckoutPage: React.FC = () => {
       await mutateAsync(orderData);
     } catch (error) {
       console.error("Error submitting order:", error);
-      // toast.error("Failed to submit order. Please try again.");
+      toast.error("Failed to submit order. Please try again.");
     }
   };
 

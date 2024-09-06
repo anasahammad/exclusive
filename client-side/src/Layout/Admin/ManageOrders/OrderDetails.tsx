@@ -12,7 +12,7 @@ const OrderDetails = () => {
     if(isLoading){
         return <div>Loading...</div>
     }
-    const order = orders.find(item=> item.orderId === id)
+    const order = orders.find((item:any)=> item.orderId === id)
 
     const {orderId, billingDetails, status,  createdAt, deliveryStatus} = order;
    

@@ -18,9 +18,9 @@ interface productCardProps {
 }
 
 const ProductCard: React.FC<productCardProps> = ({ item}) => {
-  const {productName,  price, prevPrice, discount,  starRatings,  ratings, images, isNew, _id, colors, description, category} = item;
+  const {productName,  price, prevPrice, discount,   images, isNew, _id, colors, description, category} = item;
 
-  const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, wishList} = useCart()
+  const {handleAddProductToCart, cartProducts, handleAddProductToWishlist, } = useCart()
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     _id: _id,
@@ -38,7 +38,19 @@ const ProductCard: React.FC<productCardProps> = ({ item}) => {
   const [isProductInCart, setIsProductInCart] = useState(false)
   
 
-
+  useEffect(() => {
+    setCartProduct(prev => ({
+      ...prev,
+      _id,
+      productName,
+      description,
+      category,
+      price,
+      image: images[0]?.productImage,
+      SelectedColor: colors[0].color
+    }));
+  }, [item]);
+  
   const productRatings = item.reviews?.reduce((acc:number, item:any) => item.rating + acc, 0) / item.reviews.length
 
 

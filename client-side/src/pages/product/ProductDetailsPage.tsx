@@ -1,5 +1,5 @@
 import ProductCard from "@/components/product/ProductCard";
-import ProductDetails from "@/components/product/ProductDetails";
+import ProductDetails, { ProductType } from "@/components/product/ProductDetails";
 import TopContent from "@/components/shared/TopContent";
 import useProducts from "@/hooks/useProducts";
 import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
@@ -51,7 +51,7 @@ const settings = {
 const ProductDetailsPage = () => {
     const {id} = useParams()
     const {products, isLoading, refetch} = useProducts()
-    const product = products.find(item=> item._id === id)
+    const product = products.find((item: ProductType)=> item._id === id)
     const {user} = useAuth()
     
     if (isLoading) {
@@ -75,7 +75,7 @@ const ProductDetailsPage = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  products.map((item, index)=> (
+                  products.map((item: ProductType, index: number)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  

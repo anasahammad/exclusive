@@ -1,6 +1,5 @@
 
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import ManageOrderTable from "./ManageOrdersTable";
 import useOrders from "@/hooks/useOrders";
 import TopContent from "@/components/shared/TopContent";
@@ -23,7 +22,7 @@ const ManageOrders = () => {
 
            <TopContent heading="Manage Orders" text="Manage" />
          </div>
-                <ManageOrderTable refetch={refetch} orders={orders}/>
+                <ManageOrderTable  orders={orders}/>
             </div>
         </div>
     );

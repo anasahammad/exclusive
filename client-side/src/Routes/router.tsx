@@ -7,7 +7,6 @@ import Cart from "@/pages/Cart/Cart";
 import WishList from "@/pages/wishlist/WishList";
 import Login from "@/pages/Login/Login";
 import SignUp from "@/pages/Register/SignUp";
-import CheckoutPage from "@/pages/Checkout/CheckoutPage";
 import AdminPage from "@/Layout/Admin/AdminPage";
 import Summary from "@/Layout/Admin/Summary/Summary";
 import AddProducts from "@/Layout/Admin/Add-products/AddProducts";

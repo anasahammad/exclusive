@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,10 +19,10 @@ const SignupForm = () => {
     const {createUser, googleLogin} = useAuth()
     const navigate = useNavigate()
     
-    const { register, handleSubmit, watch, formState: {errors} } = useForm<FormValues>();
+    const { register, handleSubmit,  formState: {errors} } = useForm<FormValues>();
 
     const  onSubmit: SubmitHandler<FormValues> = async  (data)=>{
-        const {name, email, phone, password} = data;
+        const {name, email,  password} = data;
         console.log(data)
          
         

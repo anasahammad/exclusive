@@ -1,10 +1,7 @@
 import CountTimer from "../CountTimer";
 import ProductCard from "../product/ProductCard";
 import TopContent from "../shared/TopContent";
-import item1 from '../../assets/item1.png'
-import item2 from '../../assets/item2.png'
-import item3 from '../../assets/item3.png'
-import item4 from '../../assets/item4.png';
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +11,7 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 // import { products } from "@/utils/Products";
 import useProducts from "@/hooks/useProducts";
+import { ProductType } from "../product/ProductDetails";
 
 
 // const products = [
@@ -150,7 +148,7 @@ const settings = {
   };
 const FlashSaleSec = () => {
 
-  const {products, isError, isLoading, error} = useProducts()
+  const {products,  isLoading, } = useProducts()
   console.log(products)
   if (isLoading) return <div>Loading...</div>;
   // if (isError) return <div>Error: {error.message}</div>;
@@ -164,7 +162,7 @@ const FlashSaleSec = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  products?.slice(0, 8).map((item, index)=> (
+                  products?.slice(0, 8).map((item: ProductType, index: number)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  

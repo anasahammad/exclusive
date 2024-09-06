@@ -1,28 +1,26 @@
-import { ProductType } from "@/components/product/ProductDetails";
+
 import { formatePrice } from "@/utils/formatePrice";
 
 import {DataGrid, GridColDef} from "@mui/x-data-grid";
 import Paper from '@mui/material/Paper';
 import Status from "@/components/Status";
-import {  MdClose,  MdDone, MdOutlinePending, MdRemoveRedEye } from "react-icons/md";
+import {    MdDone, MdOutlinePending, MdRemoveRedEye } from "react-icons/md";
 import { GrInProgress } from "react-icons/gr";
 import ActionBtn from "@/components/ActionBtn";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import toast from "react-hot-toast";
+
 
 interface ManageOrderTableProps{
     orders: any;
-    refetch: ()=> void
+    
 }
 
-const ManageOrderTable: React.FC<ManageOrderTableProps> = ({orders, refetch}) => {
+const ManageOrderTable: React.FC<ManageOrderTableProps> = ({orders}) => {
     const navigate = useNavigate()
     let rows: any = []
 
     if(orders){
-        rows = orders.map((order)=> {
+        rows = orders.map((order: any)=> {
             return {
                 id: order.orderId,
                 name: order.billingDetails.name,

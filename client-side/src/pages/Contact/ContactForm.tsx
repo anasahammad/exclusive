@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const ContactForm = () => {
   return (
@@ -10,7 +10,7 @@ const ContactForm = () => {
           <input type="email" placeholder="Your Email *" className="border-2 bg-[#F5F5F5] p-2 rounded-md" />
           <input type="tel" placeholder="Your Phone *" className="border-2 bg-[#F5F5F5] p-2 rounded-md" />
             </div>
-          <textarea placeholder="Your Message" className="border-2 bg-[#F5F5F5] p-2 rounded-md" rows="7"></textarea>
+          <textarea placeholder="Your Message" className="border-2 bg-[#F5F5F5] p-2 rounded-md" rows={7}></textarea>
         </div>
        <div className='flex justify-end'>
        <button type="submit" className="bg-[#DB4444] hover:bg-red-600 text-white font-bold py-4 px-12  rounded-md">

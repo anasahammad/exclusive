@@ -1,5 +1,4 @@
 import useAuth from "@/hooks/useAuth";
-import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -11,8 +10,8 @@ type FormValues = {
     password: string;
   };
 const LoginForm = () => {
-    const { register, handleSubmit, watch,getValues, formState: {errors} } = useForm<FormValues>();
-    const {loginUser, googleLogin, resetPassword, user} = useAuth()
+    const { register, handleSubmit, getValues, formState: {errors} } = useForm<FormValues>();
+    const {loginUser, googleLogin, resetPassword} = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
       const from = location?.state || "/";

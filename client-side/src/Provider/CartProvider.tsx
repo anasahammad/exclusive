@@ -15,6 +15,8 @@ type CartContextType = {
     handleCartQtyIncrase: (product: CartProductType) => void
     handleCartQtyDecrase: (product: CartProductType) => void
     // handleCartTotalAmount: ()=>void
+    subTotal: number
+    cartTotalAmount: number
 }
 export const CartContext = createContext<CartContextType | null>(null)
 

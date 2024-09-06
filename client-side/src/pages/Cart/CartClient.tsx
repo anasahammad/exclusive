@@ -11,8 +11,8 @@ const CartClient = () => {
     const {cartProducts, shipping, cartTotalAmount, subTotal} = useCart()
     const {user} = useAuth()
     const navigate = useNavigate()
-    const location = useLocation()
-    const form = location.state || "/";
+    // const location = useLocation()
+    // // const form = location.state || "/";
 
     const handleCheckout = ()=>{
         if(!user){

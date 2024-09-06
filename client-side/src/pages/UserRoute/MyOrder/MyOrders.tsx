@@ -29,7 +29,7 @@ const MyOrders = () => {
                 <TopContent text="orders" heading="My All Orders"/>
                 <div className="my-8">
                 {
-                    myOrders.map(item=> {
+                    myOrders.map((item:any)=> {
                         return <OrderContent isLoading={isLoading} key={item._id} item={item}/>
                     })
                 }

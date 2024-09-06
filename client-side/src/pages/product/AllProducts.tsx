@@ -1,24 +1,19 @@
 import ProductCard from "@/components/product/ProductCard";
 import { ProductType } from "@/components/product/ProductDetails";
-import useProducts from "@/hooks/useProducts";
 import { categories } from "@/utils/categories";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 
 
 const AllProducts = () => {
   const [sort, setSort] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
  
   
   const {
-    isLoading,
-    isError,
-    data: products = [],
-    error,
-    refetch
+    data: products = []
   } = useQuery({
     queryKey: ["products", sort, selectedCategories],
     queryFn: async () => {

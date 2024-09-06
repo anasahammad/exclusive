@@ -23,9 +23,9 @@ interface LinkProps {
 const Navbar = () => {
     const location = useLocation()
     const {cartTotalQty, wishList} = useCart()
-    const {logout, user, loading} = useAuth()
-    const {role, isLoading} = useRole()
-    console.log(role)
+    const {logout, user, } = useAuth()
+    const {role} = useRole()
+    // console.log(role)
     const navLinks:LinkProps[]  = [
         {
             path: '/',

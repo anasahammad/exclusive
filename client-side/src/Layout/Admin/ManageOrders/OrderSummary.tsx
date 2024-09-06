@@ -1,8 +1,11 @@
+
 import { formatePrice } from "@/utils/formatePrice";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
-
-const OrderSummary = ({ order}) => {
+interface OrderSummaryProps{
+  order: any;
+}
+const OrderSummary: React.FC<OrderSummaryProps> = ({ order}) => {
 
     return (
         <div>
@@ -17,7 +20,7 @@ const OrderSummary = ({ order}) => {
           </TableRow>
         </TableHead>
         <TableBody >
-          {order.products.map((product) => (
+          {order.products.map((product: any) => (
             <TableRow key={product._id}>
               <TableCell>
                 <img src={product.image} alt={product.productName} className="w-12 h-12 object-cover" />

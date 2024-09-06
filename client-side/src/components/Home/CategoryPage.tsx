@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import ProductCard from "../product/ProductCard";
+import { ProductType } from "../product/ProductDetails";
 
 
 const CategoryPage = () => {
@@ -42,7 +43,7 @@ const CategoryPage = () => {
 
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-                    {categoryProducts?.map(item=>{
+                    {categoryProducts?.map((item: ProductType)=>{
                         return <ProductCard  key={item._id} item={item}/>
                     })}
                 </div>

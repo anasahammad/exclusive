@@ -1,7 +1,12 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-export const SlickPrevArrow = (props)=>{
-    const { className, style, onClick } = props;
+
+interface SlickPrevArrowProps{
+  style: string,
+  onClick : ()=> void
+}
+export const SlickPrevArrow = (props: {props: SlickPrevArrowProps})=>{
+    const {  style, onClick } = props;
     return (
       <div
         className="cursor-pointer md:absolute  md:top-[-20%] md:left-[75%]"
@@ -13,7 +18,7 @@ export const SlickPrevArrow = (props)=>{
 }
 
 export const SlickNextArrow = (props)=>{
-    const { className, style, onClick } = props;
+    const {  style, onClick } = props;
     return (
       <div
         className="cursor-pointer  absolute top-0 right-3  md:top-[-20%] md:right-[15%]"

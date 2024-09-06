@@ -13,7 +13,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({cartProducts, cartTotalAmount,
         <div className="flex flex-col px-8 md:px-0 font-poppins">
             <div className="space-y-8">
                 {cartProducts?.map(cartItem=>{
-                    return <div className="flex   md:flex-row justify-between md:items-center" key={cartItem.id}>
+                    return <div className="flex   md:flex-row justify-between md:items-center" key={cartItem._id}>
                         <div className="flex items-center gap-4">
                             <img className="w-[54px] h-[54px]" src={cartItem.image} alt="" />
                             <span>{cartItem.productName.substring(0, 10)}</span>

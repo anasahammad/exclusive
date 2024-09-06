@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { HiPhone, HiMail } from 'react-icons/hi'; // Importing phone and email icons from react-icons
 
 const ContactInfo = () => {

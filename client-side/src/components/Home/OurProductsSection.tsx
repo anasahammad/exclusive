@@ -1,10 +1,7 @@
 
 import ProductCard from "../product/ProductCard";
 import TopContent from "../shared/TopContent";
-import item1 from '../../assets/Cart.png'
-import item2 from '../../assets/GP11_PRD3 1.png'
-import item3 from '../../assets/Cart (1).png'
-import item4 from '../../assets/item4.png';
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +11,7 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
 import useProducts from "@/hooks/useProducts";
+import { ProductType } from "../product/ProductDetails";
 
 
 
@@ -59,7 +57,7 @@ const settings = {
 const OurProductsSection = () => {
 
     const {products} = useProducts()
-    const newProducts = products.filter(product=> product.isNew)
+    const newProducts = products.filter((product: ProductType)=> product.isNew)
     return (
         <div className="my-12 relative">
             <div className="flex flex-col md:flex-row items-center gap-16">
@@ -70,7 +68,7 @@ const OurProductsSection = () => {
             <div className=" mt-8 ">
             <Slider {...settings}>
                 {
-                  newProducts.map((item, index)=> (
+                  newProducts.map((item: ProductType, index: number)=> (
                     
                     <ProductCard key={index} item={item}/>
                   ))  

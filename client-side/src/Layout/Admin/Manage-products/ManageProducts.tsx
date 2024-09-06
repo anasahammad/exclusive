@@ -1,6 +1,4 @@
 import useProducts from "@/hooks/useProducts";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import ManageProductsTable from "./ManageProductsTable";
 import TopContent from "@/components/shared/TopContent";
 

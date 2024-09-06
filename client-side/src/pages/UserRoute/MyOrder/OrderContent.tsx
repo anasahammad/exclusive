@@ -13,7 +13,7 @@ const OrderContent: React.FC<OrderContentProps> = ({item, isLoading}) => {
         <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid font-poppins md:grid-cols-4 gap-4 px-[42px] py-6 font-poppins items-center">
             <div className="col-span-2   md:justify-self-start ">
                 {
-                    item.products.map((product, index)=>{
+                    item.products.map((product: any, index: number)=>{
                         return <div key={index} className="flex  items-center gap-6 ">
 <div className="w-[60px] aspect-square group">
                     <img src={ product.image} alt="" />

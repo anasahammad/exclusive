@@ -1,4 +1,4 @@
-import AdminInput from "@/components/Admin/AdminInput";
+
 import { ProductType } from "@/components/product/ProductDetails";
 import TopContent from "@/components/shared/TopContent";
 import { Rating } from "@mui/material";

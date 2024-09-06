@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { Accept, useDropzone } from "react-dropzone";
 
 interface ImageUploadProps {
   onFilesSelected: (files: File[]) => void;
@@ -23,7 +23,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onFilesSelected }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*",
+    accept: { 'image/*': [] } as Accept,
     multiple: true,
   });
 

@@ -103,7 +103,7 @@ const AddProductForm = () => {
 
   const handleSizeChange = (size: string) => {
     if (selectedSizes.includes(size)) {
-      setValue("sizes", selectedSizes.filter((s) => s !== size), {
+      setValue("sizes", selectedSizes.filter((s: string) => s !== size), {
         shouldValidate: true,
         shouldDirty: true,
         shouldTouch: true,
@@ -259,7 +259,7 @@ const AddProductForm = () => {
                   key={index}
                   item={item}
                   handleChecked={handleChecked}
-                  register={register}
+                 
                 />
               );
             })}
