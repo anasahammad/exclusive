@@ -1,12 +1,12 @@
 const express = require("express")
 const app = express()
+const port = process.env.PORT || 5000
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const cors = require("cors")
-const port = process.env.PORT || 5000
+
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
-app.use(express.json())
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { v4: uuidv4 } = require('uuid');
 
@@ -14,9 +14,10 @@ const corseOptions = {
   origin: ["http://localhost:5173"],
   credentials: true,
 }
+
 app.use(cors(corseOptions))
 app.use(cookieParser())
-
+app.use(express.json())
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.goboxhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -32,9 +33,9 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
-    const db = await client.db("mobilemart")
+    const db =  client.db("mobilemart")
     const productCollection = db.collection("products")
     const usersCollection = db.collection("users")
     const orderCollection = db.collection("orders")
@@ -262,8 +263,8 @@ async function run() {
 
     })
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
