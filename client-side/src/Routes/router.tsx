@@ -20,6 +20,7 @@ import ManageProducts from "@/Layout/Admin/Manage-products/ManageProducts";
 import ManageOrders from "@/Layout/Admin/ManageOrders/ManageOrders";
 import OrderDetails from "@/Layout/Admin/ManageOrders/OrderDetails";
 import About from "@/pages/About/About";
+import Contact from "@/pages/Contact/Contact";
 
 export const router = createBrowserRouter([ 
     { 
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
         {
             path: "/about",
             element: <About/>
+        },
+        {
+            path: "/contact",
+            element: <Contact/>
         },
         {
             path: "/admin",
