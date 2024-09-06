@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ManageOrderTable from "./ManageOrdersTable";
 import useOrders from "@/hooks/useOrders";
+import TopContent from "@/components/shared/TopContent";
 
 
 
@@ -17,9 +18,11 @@ const ManageOrders = () => {
     return (
         <div className="py-12">
             <div className="container mx-auto">
-            <div className="text-center  mb-6">
-            <h1 className="text-4xl font-inter font-semibold">Manage Orders</h1>
-          </div>
+            <div className="  mb-6">
+           
+
+           <TopContent heading="Manage Orders" text="Manage" />
+         </div>
                 <ManageOrderTable refetch={refetch} orders={orders}/>
             </div>
         </div>

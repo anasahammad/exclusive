@@ -6,6 +6,9 @@ import { SlickNextArrow, SlickPrevArrow } from "@/utils/CustomizeArrow";
 
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
+import ListRating from "./ListRating";
+import AddRating from "./AddRating";
+import useAuth from "@/hooks/useAuth";
 
 
 const settings = {
@@ -47,9 +50,9 @@ const settings = {
   };
 const ProductDetailsPage = () => {
     const {id} = useParams()
-    const {products, isLoading} = useProducts()
+    const {products, isLoading, refetch} = useProducts()
     const product = products.find(item=> item._id === id)
-
+    const {user} = useAuth()
     
     if (isLoading) {
       return <div>Loading...</div>;
@@ -82,6 +85,12 @@ const ProductDetailsPage = () => {
               
             </div>
         </div>
+                <div className="flex flex-col gap-4 ">
+
+        <AddRating refetch={refetch} product={product} user={user}/>
+
+                <ListRating product={product}/>
+                </div>
         </div>
     );
 };

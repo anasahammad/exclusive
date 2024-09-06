@@ -203,6 +203,32 @@ async function run() {
 
      res.send({clientSecret: paymentIntent.client_secret})
     })
+
+    app.post("/add-review", async(req, res)=>{
+      const {userId, productId, rating, comment, user} = req.body;
+
+      const product = await productCollection.findOne({_id: new ObjectId(productId)})
+      const existInReview = await product.reviews.find(review=> review.userId === userId)
+
+      if(existInReview){
+        return res.status(401).send({message: "You have already reviewd this product"})
+      }
+
+      const newReview = {
+        rating,
+        comment,
+        userId,
+        user,
+        createdDate: new Date()
+      }
+
+      const result = await productCollection.updateOne({_id: new ObjectId(productId)}, {
+        $push: { reviews: newReview }
+      })
+
+      res.send(result)
+
+    })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");

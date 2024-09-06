@@ -52,7 +52,7 @@ const ManageOrderTable: React.FC<ManageOrderTableProps> = ({orders, refetch}) =>
                 icon={MdDone}
                
                 color="text-teal-400"
-                /> : <>{params.row.status === "pending" ? <Status text={params.row.status}
+                /> : <>{params.row.status === "Pending" ? <Status text={params.row.status}
                 icon={MdOutlinePending}
                
                 color="text-orange-500"

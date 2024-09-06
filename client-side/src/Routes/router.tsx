@@ -68,37 +68,38 @@ export const router = createBrowserRouter([
         {
             path: "/best-selling",
             element: <BestSellingProduct/>
+        },
+        {
+            path: "/admin",
+            element: <AdminPage/>,
+            children: [
+                {
+                   index: true,
+                    element: <Summary/>
+                },
+                {
+                    path: "/admin/add-products",
+                    element: <AddProducts/>
+                },
+                {
+                    path: "/admin/manage-products",
+                    element: <ManageProducts/>
+                },
+                {
+                    path: "/admin/manage-orders",
+                    element: <ManageOrders/>
+                },
+                {
+                    path: "/admin/order-details/:id",
+                    element: <OrderDetails/>
+                },
+                
+            ]
         }
 
     ]
     }, 
-    {
-        path: "/admin",
-        element: <AdminPage/>,
-        children: [
-            {
-               index: true,
-                element: <Summary/>
-            },
-            {
-                path: "/admin/add-products",
-                element: <AddProducts/>
-            },
-            {
-                path: "/admin/manage-products",
-                element: <ManageProducts/>
-            },
-            {
-                path: "/admin/manage-orders",
-                element: <ManageOrders/>
-            },
-            {
-                path: "/admin/order-details/:id",
-                element: <OrderDetails/>
-            },
-            
-        ]
-    }
+    
 
     
    ]); 
