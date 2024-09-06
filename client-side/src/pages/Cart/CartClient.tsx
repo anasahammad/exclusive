@@ -3,6 +3,7 @@ import ItemContent from "./ItemContent";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatePrice } from "@/utils/formatePrice";
 import useAuth from "@/hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const CartClient = () => {
@@ -15,7 +16,7 @@ const CartClient = () => {
 
     const handleCheckout = ()=>{
         if(!user){
-            alert("You have to login first")
+            toast.error("You have to login first")
             navigate("/login")
             return
         } else{

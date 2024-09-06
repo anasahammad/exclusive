@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -23,11 +24,12 @@ const LoginForm = () => {
         
         loginUser(email, password)
         .then(()=>{
-            console.log("Login Successful")
+            // console.log("Login Successful")
+            toast.success("Login Successful")
             navigate(from)
         }).catch(error=>{
             console.log(error)
-            alert(`${error.message.replace('Firebase: Error (auth/', ' ').replace(/\)/, '')}`)
+           toast.error(`${error.message.replace('Firebase: Error (auth/', ' ').replace(/\)/, '')}`)
         }) 
     }
 
@@ -35,11 +37,11 @@ const LoginForm = () => {
     const handleGoogle = ()=>{
         googleLogin()
         .then(()=>{
-            alert("login successful")
+            toast.success("Login Successful")
             navigate(from)
         }).catch(error=>{
             console.log(error)
-            alert(`${error.message.replace('Firebase: Error (auth/', ' ').replace(/\)/, '')}`)
+            toast.error(`${error.message.replace('Firebase: Error (auth/', ' ').replace(/\)/, '')}`)
         })
        
       }
@@ -50,20 +52,20 @@ const LoginForm = () => {
         
         if(!email){
             
-            alert("Please enter your email address to reset your password")
+           toast.error("Please enter your email address to reset your password")
             return
         }
 
         try{
            await resetPassword(email);
-                alert("Password reset email sent! check your email")
+               toast.error("Password reset email sent! check your email")
                 return
         } catch (error: any) {
             if (error.code === 'auth/user-not-found') {
-              alert("No user found with this email address. Please check your email and try again.");
+              toast.error("No user found with this email address. Please check your email and try again.");
             } else {
               console.log(error);
-              alert("An error occurred while trying to reset the password. Please try again later.");
+              toast.error("An error occurred while trying to reset the password. Please try again later.");
             }
           }
       }

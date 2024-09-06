@@ -90,6 +90,19 @@ async function run() {
       res.send(result)
     })
 
+    app.get("/users", async(req, res)=>{
+      const result = await usersCollection.find().toArray()
+      res.send(result)
+    })
+
+      //get user
+      app.get('/users/:email', async(req, res)=>{
+        const email = req.params.email;
+        
+        const query = {email : email}
+        const result = await usersCollection.findOne(query)
+        res.send(result)
+      })
     app.get('/products', async(req, res)=>{
       const sort = req?.query.sort;
       const category = req.query.categories;

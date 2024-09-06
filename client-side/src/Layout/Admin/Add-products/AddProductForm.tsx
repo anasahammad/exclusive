@@ -14,6 +14,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import ImageUpload from "../ImageUpload";
+import toast from "react-hot-toast";
 
 const AddProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -125,7 +126,7 @@ const AddProductForm = () => {
       return response.data;
     },
     onSuccess: () => {
-      console.log("Product added successfully");
+      toast.success("Product added successfully");
     },
   });
 
@@ -133,15 +134,16 @@ const AddProductForm = () => {
     setIsLoading(true);
     try {
       const imageObjects = await uploadImages(selectedFiles);
-      data.images = imageObjects; // Assign the array of image objects
+      data.images = imageObjects; 
 
       data.colors = checkedColors;
 
-      await mutateAsync(data); // Await the mutation call
+      await mutateAsync(data); 
 
-      reset(); // Reset the form after submission
+      reset(); 
     } catch (error) {
       console.error("Error uploading images: ", error);
+      toast.error("Error uploading images: ")
     } finally {
       setIsLoading(false);
     }

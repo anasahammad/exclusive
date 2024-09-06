@@ -10,6 +10,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import useCart from "@/hooks/useCart";
 import useAuth from "@/hooks/useAuth";
+import useRole from "@/hooks/useRole";
 
 
 
@@ -23,6 +24,8 @@ const Navbar = () => {
     const location = useLocation()
     const {cartTotalQty, wishList} = useCart()
     const {logout, user, loading} = useAuth()
+    const {role, isLoading} = useRole()
+    console.log(role)
     const navLinks:LinkProps[]  = [
         {
             path: '/',
@@ -83,14 +86,18 @@ const Navbar = () => {
   <span className="absolute top-0 right-0 text-xs text-white bg-[#DB4444] p-1 rounded-full flex items-center justify-center w-4 h-4">{cartTotalQty}</span>
 </Link>
                  
-                 {user && <DropdownMenu >
+
+                 
+                 {user &&  <DropdownMenu >
                    <DropdownMenuTrigger
                    >  <FaUserCircle className="cursor-pointer hover:text-[#DB4444] active:text-[#DB4444]"/>
                    </DropdownMenuTrigger>
                    <DropdownMenuContent className="backdrop-blur-[75px]  pt-[18px] pr-3 pb-2 pl-5">  
-                    <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
+                   <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
                     Manage My Account
                     </DropdownMenuItem> 
+                    {role === "user"  ? <>
+                        
                     <DropdownMenuItem  >
                    <Link to="/my-order" className="flex gap-4 items-center"> <RiShoppingBag3Line />
                    My Order</Link>
@@ -103,10 +110,13 @@ const Navbar = () => {
                     <FaRegStar />
                     My Reviews
                     </DropdownMenuItem> 
-                    <DropdownMenuItem className="flex gap-4 items-center" >
+                     
+                    </> : <DropdownMenuItem className="flex gap-4 items-center" >
                     <RiAdminLine />
                      <Link to="/admin">Admin Dashboard</Link>
-                    </DropdownMenuItem> 
+                    </DropdownMenuItem> }
+                   
+                    
                     <DropdownMenuItem onClick={logout} className="flex gap-4 items-center" >
                     <TbLogout2 />
                     Logout

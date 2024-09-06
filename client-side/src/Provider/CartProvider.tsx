@@ -1,5 +1,6 @@
 import { CartProductType, ProductType } from "@/components/product/ProductDetails";
 import { createContext, useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 
 type CartContextType = {
@@ -13,7 +14,7 @@ type CartContextType = {
     handleRemoveFromWishlist : (product: ProductType)=> void
     handleCartQtyIncrase: (product: CartProductType) => void
     handleCartQtyDecrase: (product: CartProductType) => void
-    handleCartTotalAmount: ()=>void
+    // handleCartTotalAmount: ()=>void
 }
 export const CartContext = createContext<CartContextType | null>(null)
 
@@ -53,7 +54,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
                 updatedCart = [product]
             }
 
-            alert("Product Added to Cart")
+            toast.success("Product Added to Cart")
             localStorage.setItem("exclusiveCart", JSON.stringify(updatedCart))
             return updatedCart;
         }) 
@@ -64,7 +65,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
         
         const isExist = wishList?.find(item=> item._id === product._id)
         if(isExist){
-            return alert("The product is already added on the wishlist")
+            return toast.error("The product is already added on the wishlist")
         }
 
         setWishlist((prev)=>{
@@ -79,7 +80,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
                
             }
 
-            alert("Product Added to Wishlist")
+            toast.success("Product Added to Wishlist")
             localStorage.setItem("exclusiveWishlist", JSON.stringify(updatedWishlist))
             return updatedWishlist;
         }) 
@@ -126,7 +127,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
             })
 
             setCartProducts(filterProducts)
-            alert("Product remove from cart")
+            toast.success("Product remove from cart")
             localStorage.setItem("exclusiveCart", JSON.stringify(filterProducts))
         }
     }, [cartProducts])
@@ -138,7 +139,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
             })
 
             setWishlist(filterProducts)
-            alert("Product remove from wishlist")
+            toast.success("Product remove from wishlist")
             localStorage.setItem("exclusiveWishlist", JSON.stringify(filterProducts))
         }
     }, [wishList])
@@ -146,7 +147,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const handleCartQtyIncrase = useCallback((product: CartProductType)=>{
         let updatedCart;
         if(product.quantity === 99){
-            return alert("Oops! Maximum Reached")
+            return toast.error("Oops! Maximum Reached")
         }
 
         if(cartProducts){
@@ -165,7 +166,7 @@ const CartProvider:  React.FC<CartProviderProps> = ({children}) => {
     const handleCartQtyDecrase = useCallback((product: CartProductType)=>{
         let updatedCart;
         if(product.quantity === 1){
-            return alert("Oops! Minimum Reached")
+            return toast.error("Oops! Minimum Reached")
         }
 
         if(cartProducts){

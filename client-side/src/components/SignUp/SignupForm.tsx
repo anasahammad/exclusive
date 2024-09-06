@@ -3,8 +3,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
-import { sendEmailVerification, updateEmail, updateProfile } from "firebase/auth";
+import { sendEmailVerification,  updateProfile } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import toast from "react-hot-toast";
 
 
 type FormValues = {
@@ -28,11 +29,11 @@ const SignupForm = () => {
          createUser(email, password)
          .then(result=>{
             console.log(result.user)
-            // toast.success("Account Created Successfully")
+            toast.success("Account Created Successfully")
 
             sendEmailVerification(result.user)
             .then(()=>{
-                alert("Check your email and verify your account")
+                toast.success("Check your email and verify your account")
                 navigate("/")
             })
 
@@ -46,7 +47,7 @@ const SignupForm = () => {
              
          }).catch((error: FirebaseError)=>{
             console.log(error)
-            // toast.error(error.message)
+            toast.error(error.message)
             return
         })
          
