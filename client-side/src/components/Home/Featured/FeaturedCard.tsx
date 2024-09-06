@@ -9,7 +9,7 @@ interface FeaturedCardProps {
 
 const FeaturedCard: React.FC<FeaturedCardProps> = ({ image, title, text,  }) => {
   return (
-    <div className={`bg-black px-[30px] pt-[80px] pb-[20px] rounded-sm`}>
+    <div className={`bg-black border  px-[30px] pt-[80px] pb-[20px] rounded-sm`}>
       <div className="aspect-square relative overflow-hidden">
         <img className="w-full h-full object-cover" src={image} alt={title} />
 

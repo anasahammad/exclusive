@@ -19,6 +19,7 @@ import BestSellingProduct from "@/components/product/BestSellingProduct";
 import ManageProducts from "@/Layout/Admin/Manage-products/ManageProducts";
 import ManageOrders from "@/Layout/Admin/ManageOrders/ManageOrders";
 import OrderDetails from "@/Layout/Admin/ManageOrders/OrderDetails";
+import About from "@/pages/About/About";
 
 export const router = createBrowserRouter([ 
     { 
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
         {
             path: "/best-selling",
             element: <BestSellingProduct/>
+        },
+        {
+            path: "/about",
+            element: <About/>
         },
         {
             path: "/admin",
