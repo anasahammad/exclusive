@@ -21,23 +21,21 @@ app.use(express.json())
 
 //middleware
 //verify Token
-const verifyToken =async  (req, res, next)=>{
-  const token = req?.cookies.token;
-
-
-  if(!token){
-    return res.status(401).send({message: "access token not found"})
+const verifyToken = async (req, res, next) => {
+  const token = req?.cookies?.token;
+  console.log(token)
+  if (!token) {
+    return res.status(401).json({ message: "Access token not found" });
   }
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decode)=>{
-    if(err){
-      return res.status(401).send({message: "unauthorize access"})
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ message: "Unauthorized access" });
     }
-    req.user = decode
-    next()
-    
-  })
-}
+    req.user = decoded; // Attach the decoded token data (e.g. user info) to the request
+    next();
+  });
+};
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.goboxhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -161,7 +159,7 @@ async function run() {
 
     //insert product in db
 
-    app.post("/add-product", verifyToken, verifyAdmin, async(req, res)=>{
+    app.post("/add-product",  async(req, res)=>{
       const product = req.body;
       const result = await productCollection.insertOne(product)
 
@@ -169,7 +167,7 @@ async function run() {
     })
 
     //update product status in stock
-    app.put("/update-inStock", verifyToken, verifyAdmin, async(req, res)=>{
+    app.put("/update-inStock",  async(req, res)=>{
       const {id} = req.body;
     
       const query = {_id: new ObjectId(id)}
@@ -187,7 +185,7 @@ async function run() {
       res.send(result)
     })
     //delete product by id
-    app.delete("/delete-product/:id", verifyToken, verifyAdmin, async(req, res)=>{
+    app.delete("/delete-product/:id",  async(req, res)=>{
       const id = req.params.id;
       console.log(id)
       const query = {_id: new ObjectId(id)}
@@ -237,7 +235,7 @@ async function run() {
     })
 
  //update order status
- app.put("/update-status", verifyToken, verifyAdmin, async(req, res)=>{
+ app.put("/update-status",  async(req, res)=>{
   const {orderId, newStatus, newDeliveryStatus} = req.body;
   
   

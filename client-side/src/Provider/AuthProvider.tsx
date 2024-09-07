@@ -73,23 +73,29 @@ const [loading, setLoading] = useState(true)
         const {data} = await axios.put(`${import.meta.env.VITE_BASE_URL}/user`, currentuser)
         return data;
    }
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(auth, currentUser=>{
-            
-           if(currentUser){
-            setUser(currentUser)
-            console.log(currentUser)
-            getToken(currentUser.email)
-            saveUser(currentUser)
-            setLoading(false)
-           } else{
-            setUser(null)
-           }
-           setLoading(false)
-        })
-
-        return ()=>  unSubscribe()
-    }, [])
+   useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        console.log(currentUser);
+  
+        try {
+          await getToken(currentUser.email);  // Await the token fetching
+          await saveUser(currentUser);        // Await the user saving
+        } catch (error) {
+          console.error('Error fetching token or saving user:', error);
+        }
+  
+        setLoading(false);
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
+    });
+  
+    return () => unSubscribe();
+  }, []);
+  
     const authInfo = {
         createUser,
         user,

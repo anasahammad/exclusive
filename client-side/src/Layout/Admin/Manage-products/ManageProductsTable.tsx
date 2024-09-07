@@ -71,7 +71,7 @@ const ManageProductsTable: React.FC<ManageProductsTableProps> = ({products, refe
 
     const {mutateAsync} = useMutation({
         mutationFn: async(id:string)=>{
-            const response = await axios.delete(`${import.meta.env.VITE_BASE_URL}/delete-product/${id}`)
+            const response = await axios.delete(`${import.meta.env.VITE_BASE_URL}/delete-product/${id}`, {withCredentials: true})
             return response.data;
         },
         onSuccess: ()=>{
@@ -89,7 +89,7 @@ const ManageProductsTable: React.FC<ManageProductsTableProps> = ({products, refe
     }
 
     const handleStockToggle = (id: string)=>{
-        axios.put(`${import.meta.env.VITE_BASE_URL}/update-inStock`, {id}).then((res)=>{
+        axios.put(`${import.meta.env.VITE_BASE_URL}/update-inStock`, {id}, {withCredentials: true}).then((res)=>{
             toast.success("The status changes")
             console.log(res)
             refetch()
