@@ -12,13 +12,13 @@ const CartClient = () => {
     const {user} = useAuth()
     const navigate = useNavigate()
     // const location = useLocation()
-    // // const form = location.state || "/";
+    // const form = location.state || "/";
 
     if(isLoading) {
         return <div>Loading..</div>
     }
 
-    
+
     const handleCheckout = ()=>{
         if(!user){
             toast.error("You have to login first")

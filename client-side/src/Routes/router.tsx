@@ -22,11 +22,13 @@ import About from "@/pages/About/About";
 import Contact from "@/pages/Contact/Contact";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import ErrorPage from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([ 
     { 
     path: "/", 
     element: <Main/>,
+    errorElement: <ErrorPage/>,
     children: [
         {
             index: true,
