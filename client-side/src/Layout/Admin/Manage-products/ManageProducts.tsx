@@ -1,6 +1,7 @@
 import useProducts from "@/hooks/useProducts";
 import ManageProductsTable from "./ManageProductsTable";
 import TopContent from "@/components/shared/TopContent";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 const ManageProducts = () => {
@@ -8,7 +9,7 @@ const ManageProducts = () => {
     const {products, isLoading, refetch} = useProducts()
 
    if(isLoading){
-    return <div>Loading....</div>
+    return <LoadingSpinner/>
    }
     return (
         <div className="py-12">

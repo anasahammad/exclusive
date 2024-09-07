@@ -3,6 +3,7 @@
 import ManageOrderTable from "./ManageOrdersTable";
 import useOrders from "@/hooks/useOrders";
 import TopContent from "@/components/shared/TopContent";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 
@@ -12,7 +13,7 @@ const ManageOrders = () => {
     const {orders, isLoading} = useOrders()
 
    if(isLoading){
-    return <div>Loading....</div>
+    return <LoadingSpinner/>
    }
     return (
         <div className="py-12">

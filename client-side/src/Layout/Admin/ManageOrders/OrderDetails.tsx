@@ -3,6 +3,7 @@ import { MdEmail, MdPerson, MdPhone, MdShoppingCart } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import OrderSummary from "./OrderSummary";
 import OrderStatusForm from "./OrderStatusForm";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 const OrderDetails = () => {
@@ -10,7 +11,7 @@ const OrderDetails = () => {
     const {orders, isLoading} = useOrders()
     
     if(isLoading){
-        return <div>Loading...</div>
+        return <LoadingSpinner/>
     }
     const order = orders.find((item:any)=> item.orderId === id)
 

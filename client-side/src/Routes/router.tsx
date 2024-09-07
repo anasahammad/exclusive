@@ -23,6 +23,9 @@ import Contact from "@/pages/Contact/Contact";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ErrorPage from "@/pages/ErrorPage";
+import ManageMyAccount from "@/pages/ManageMyAccount/ManageMyAccount";
+import MyReviews from "@/pages/MyReviews/MyReviews";
+import MyCancelletion from "@/pages/MyCancelletion/MyCancelletion";
 
 export const router = createBrowserRouter([ 
     { 
@@ -81,6 +84,18 @@ export const router = createBrowserRouter([
         {
             path: "/contact",
             element: <Contact/>
+        },
+        {
+            path: "/manage-account",
+            element: <ManageMyAccount/>
+        },
+        {
+            path: "/my-reviews",
+            element: <MyReviews/>
+        },
+        {
+            path: "/my-canceletion",
+            element: <MyCancelletion/>
         },
         {
             path: "/admin",

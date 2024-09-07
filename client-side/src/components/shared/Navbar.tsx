@@ -97,8 +97,11 @@ const Navbar = () => {
                    >  <FaUserCircle className="cursor-pointer hover:text-[#DB4444] active:text-[#DB4444]"/>
                    </DropdownMenuTrigger>
                    <DropdownMenuContent className="backdrop-blur-[75px]  pt-[18px] pr-3 pb-2 pl-5">  
-                   <DropdownMenuItem className="flex gap-4 items-center" ><FiUser />
-                    Manage My Account
+                   <DropdownMenuItem  >
+                    <Link to="/manage-account" className="flex gap-4 items-center">
+                    <FiUser /> Manage My Account
+                    </Link>
+                   
                     </DropdownMenuItem> 
                     {role !== "admin"  ? <>
                         
@@ -106,13 +109,19 @@ const Navbar = () => {
                    <Link to="/my-order" className="flex gap-4 items-center"> <RiShoppingBag3Line />
                    My Order</Link>
                     </DropdownMenuItem> 
-                    <DropdownMenuItem className="flex gap-4 items-center" >
-                    <MdOutlineCancel />
-                    My Cancellation
+                    <DropdownMenuItem  >
+                        <Link to="my-canceletion" className="flex gap-4 items-center">
+                        <MdOutlineCancel />
+                        My Cancellation
+                        </Link>
+                   
                     </DropdownMenuItem> 
-                    <DropdownMenuItem className="flex gap-4 items-center" >
-                    <FaRegStar />
+                    <DropdownMenuItem >
+                        <Link to="/my-reviews" className="flex gap-4 items-center">
+                        <FaRegStar />
                     My Reviews
+                        </Link>
+                    
                     </DropdownMenuItem> 
                      
                     </> : <DropdownMenuItem className="flex gap-4 items-center" >

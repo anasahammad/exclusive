@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import useAuth from "@/hooks/useAuth";
 import useRole from "@/hooks/useRole";
 import React from "react";
@@ -13,7 +14,7 @@ const AdminRoute: React.FC<AdminRouteProps> = ({children}) => {
     const {loading} = useAuth()
 
     // if(isLoading) return <LoadingSpinner/>
-    if(isLoading || loading) return <div>Loading...</div>
+    if(isLoading || loading) return <LoadingSpinner/>
     if(role === 'admin') return children
     return  <Navigate to="/"></Navigate>
     

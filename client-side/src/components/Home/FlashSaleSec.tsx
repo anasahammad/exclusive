@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 // import { products } from "@/utils/Products";
 import useProducts from "@/hooks/useProducts";
 import { ProductType } from "../product/ProductDetails";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 // const products = [
@@ -150,7 +151,7 @@ const FlashSaleSec = () => {
 
   const {products,  isLoading, } = useProducts()
   console.log(products)
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner/>;
   // if (isError) return <div>Error: {error.message}</div>;
     return (
         <div className="my-12 relative">

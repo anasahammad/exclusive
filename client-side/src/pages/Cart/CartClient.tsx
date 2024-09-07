@@ -4,6 +4,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import { formatePrice } from "@/utils/formatePrice";
 import useAuth from "@/hooks/useAuth";
 import toast from "react-hot-toast";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 const CartClient = () => {
@@ -15,7 +16,7 @@ const CartClient = () => {
     // const form = location.state || "/";
 
     if(isLoading) {
-        return <div>Loading..</div>
+        return <LoadingSpinner/>
     }
 
 

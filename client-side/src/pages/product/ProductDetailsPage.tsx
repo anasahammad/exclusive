@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import ListRating from "./ListRating";
 import AddRating from "./AddRating";
 import useAuth from "@/hooks/useAuth";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 const settings = {
@@ -55,7 +56,7 @@ const ProductDetailsPage = () => {
     const {user} = useAuth()
     
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <LoadingSpinner/>
   }
 
   if (!product) {

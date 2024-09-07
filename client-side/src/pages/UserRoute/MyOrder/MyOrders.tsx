@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import OrderContent from "./OrderContent";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 
 const MyOrders = () => {
@@ -20,7 +21,7 @@ const MyOrders = () => {
 
 
     if(isLoading){
-        return <div>Loading.....</div>
+        return <LoadingSpinner/>
     }
     
   

@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { Link } from "react-router-dom";
 
 interface OrderContentProps{
@@ -7,7 +8,7 @@ interface OrderContentProps{
 const OrderContent: React.FC<OrderContentProps> = ({item, isLoading}) => {
     
     if(isLoading){
-        return <div>Loading.....</div>
+        return <LoadingSpinner/>
     }
     return (
         <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="grid font-poppins md:grid-cols-4 gap-4 px-[42px] py-6 font-poppins items-center">
