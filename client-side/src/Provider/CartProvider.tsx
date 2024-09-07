@@ -29,7 +29,7 @@ const CartProvider: React.FC<CartProviderProps> = ({children}) => {
     const [cartTotalAmount, setCartTotalAmount] = useState(0)
     const [subTotal, setSubTotal] = useState(0)
     const [shipping, setShipping] = useState<number>(10)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const cartItems: any = localStorage.getItem("exclusiveCart")

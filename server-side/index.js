@@ -19,6 +19,26 @@ app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(express.json())
 
+//middleware
+//verify Token
+const verifyToken =async  (req, res, next)=>{
+  const token = req?.cookies.token;
+
+
+  if(!token){
+    return res.status(401).send({message: "access token not found"})
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decode)=>{
+    if(err){
+      return res.status(401).send({message: "unauthorize access"})
+    }
+    req.user = decode
+    next()
+    
+  })
+}
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.goboxhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -40,6 +60,17 @@ async function run() {
     const usersCollection = db.collection("users")
     const orderCollection = db.collection("orders")
 
+
+    //verifyAdmin middlware
+    const verifyAdmin = async (req, res, next)=>{
+      const user = req.user;
+      const query = {email : user?.email}
+      const result = await usersCollection.findOne(query)
+      if(!result || result.role !== 'admin'){
+        return res.status(401).send({message: "un authorized access"})
+      }
+      next()
+    }
     //auth related api
     app.post("/jwt", async(req, res)=>{
       const user = req.body;
@@ -91,7 +122,7 @@ async function run() {
       res.send(result)
     })
 
-    app.get("/users", async(req, res)=>{
+    app.get("/users", verifyToken, verifyAdmin, async(req, res)=>{
       const result = await usersCollection.find().toArray()
       res.send(result)
     })
@@ -130,7 +161,7 @@ async function run() {
 
     //insert product in db
 
-    app.post("/add-product", async(req, res)=>{
+    app.post("/add-product", verifyToken, verifyAdmin, async(req, res)=>{
       const product = req.body;
       const result = await productCollection.insertOne(product)
 
@@ -138,7 +169,7 @@ async function run() {
     })
 
     //update product status in stock
-    app.put("/update-inStock", async(req, res)=>{
+    app.put("/update-inStock", verifyToken, verifyAdmin, async(req, res)=>{
       const {id} = req.body;
     
       const query = {_id: new ObjectId(id)}
@@ -156,7 +187,7 @@ async function run() {
       res.send(result)
     })
     //delete product by id
-    app.delete("/delete-product/:id", async(req, res)=>{
+    app.delete("/delete-product/:id", verifyToken, verifyAdmin, async(req, res)=>{
       const id = req.params.id;
       console.log(id)
       const query = {_id: new ObjectId(id)}
@@ -165,7 +196,7 @@ async function run() {
     })
 
     //post orders on database
-    app.put("/order", async(req, res)=>{
+    app.put("/order",  async(req, res)=>{
       const order =  req.body;
       const uniqueId = uuidv4()
       const smallId = uniqueId.slice(0, 16)
@@ -176,7 +207,7 @@ async function run() {
     })
 
     //get order details
-    app.get("/order-details/:orderId", async(req, res)=>{
+    app.get("/order-details/:orderId", verifyToken, verifyAdmin, async(req, res)=>{
       const orderId = req.params.orderId;
       const query = {orderId: orderId}
       const result = await orderCollection.findOne(query)
@@ -189,7 +220,7 @@ async function run() {
     })
 
     //get order for specific user
-    app.get("/my-order/:userId", async(req, res)=>{
+    app.get("/my-order/:userId", verifyToken, async(req, res)=>{
       const userId = req.params.userId;
       
       const query = {userId: userId}
@@ -206,7 +237,7 @@ async function run() {
     })
 
  //update order status
- app.put("/update-status", async(req, res)=>{
+ app.put("/update-status", verifyToken, verifyAdmin, async(req, res)=>{
   const {orderId, newStatus, newDeliveryStatus} = req.body;
   
   
