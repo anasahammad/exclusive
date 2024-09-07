@@ -20,6 +20,8 @@ import ManageOrders from "@/Layout/Admin/ManageOrders/ManageOrders";
 import OrderDetails from "@/Layout/Admin/ManageOrders/OrderDetails";
 import About from "@/pages/About/About";
 import Contact from "@/pages/Contact/Contact";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([ 
     { 
@@ -52,11 +54,11 @@ export const router = createBrowserRouter([
         },
         {
             path: "/checkout",
-            element: <CheckOut/>
+            element: <PrivateRoute><CheckOut/></PrivateRoute>
         },
         {
             path: "/my-order",
-            element: <MyOrders/>
+            element: <PrivateRoute><MyOrders/></PrivateRoute>
         },
         {
             path: "/product-category/:category",
@@ -84,23 +86,31 @@ export const router = createBrowserRouter([
             children: [
                 {
                    index: true,
-                    element: <Summary/>
+                    element: <PrivateRoute><AdminRoute><Summary/></AdminRoute></PrivateRoute>
                 },
                 {
                     path: "/admin/add-products",
-                    element: <AddProducts/>
+                    element: <PrivateRoute>
+                        <AdminRoute><AddProducts/></AdminRoute>
+                    </PrivateRoute>
                 },
                 {
                     path: "/admin/manage-products",
-                    element: <ManageProducts/>
+                    element: <PrivateRoute>
+                        <AdminRoute><ManageProducts/></AdminRoute>
+                    </PrivateRoute>
                 },
                 {
                     path: "/admin/manage-orders",
-                    element: <ManageOrders/>
+                    element: <PrivateRoute>
+                        <AdminRoute><ManageOrders/></AdminRoute>
+                    </PrivateRoute>
                 },
                 {
                     path: "/admin/order-details/:id",
-                    element: <OrderDetails/>
+                    element: <PrivateRoute>
+                        <AdminRoute><OrderDetails/></AdminRoute>
+                    </PrivateRoute>
                 },
                 
             ]

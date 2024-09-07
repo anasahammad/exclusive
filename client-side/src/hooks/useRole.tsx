@@ -12,7 +12,7 @@ type User = {
 const useRole = () => {
   const { user } = useAuth();
 
-  const { data } = useQuery<User>({
+  const { data, isLoading } = useQuery<User>({
     queryKey: ["role", user?.email],
     queryFn: async () => {
       const res = await axios.get<User>(`${import.meta.env.VITE_BASE_URL}/users/${user?.email}`);
@@ -25,7 +25,7 @@ const useRole = () => {
   // Extract role, default to empty string if data is not available
   const role = data?.role || "";
 
-  return { role };
+  return { role, isLoading };
 };
 
 export default useRole;
