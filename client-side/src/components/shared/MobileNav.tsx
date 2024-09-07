@@ -24,8 +24,8 @@ const MobileNav = () => {
             title: 'About'
         },
         {
-            path: '/signup',
-            title: 'Sign Up'
+            path: '/login',
+            title: 'Login'
         },
     ]
     return (

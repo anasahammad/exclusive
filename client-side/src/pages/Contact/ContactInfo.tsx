@@ -3,7 +3,7 @@ import { HiPhone, HiMail } from 'react-icons/hi'; // Importing phone and email i
 
 const ContactInfo = () => {
   return (
-    <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="w-[36%] bg-white px-[34px] pt-[40px] pb-[51px]  rounded-sm">
+    <div style={{boxShadow: '0px 1px 13px 0px rgba(0, 0, 0, 0.05)'}} className="md:w-[36%] bg-white px-[34px] pt-[40px] pb-[51px]  rounded-sm">
       <div className="flex items-start space-x-4">
         <HiPhone className="bg-[#DB4444] text-white rounded-full p-1" size="24" />
         <div className='font-poppins'>

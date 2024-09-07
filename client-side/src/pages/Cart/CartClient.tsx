@@ -71,13 +71,13 @@ const CartClient = () => {
             <button  className="px-6 md:px-12 py-[10px]  border-[1.5px] border-[#00000066] rounded-sm font-poppins font-medium">Update Cart</button>
             </div>
 
-            <div className="my-20 flex justify-between items-start">
-                <div className="flex gap-4 items-center">
+            <div className="my-20 flex flex-col md:flex-row gap-3 justify-between items-start">
+                <div className="flex flex-col md:flex-row gap-4 items-center">
                     <input type="text" className="border-[1.5px] border-[#00000066] py-3 pl-6 pr-[164px] rounded-sm" placeholder="Coupon Code" />
                     <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins">Apply Coupon</button>
                 </div>
 
-                <div className="border-[1.5px] border-[#000] rounded-sm px-6 py-8 font-poppins w-[35%]">
+                <div className="border-[1.5px] border-[#000] rounded-sm px-6 py-8 font-poppins md:w-[35%]">
                         <h4 className="font-medium text-xl">Cart Total</h4>
 
                         <div className="flex justify-between items-center my-4">

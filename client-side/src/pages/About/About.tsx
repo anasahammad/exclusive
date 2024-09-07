@@ -33,7 +33,7 @@ const About = () => {
            <OurStorySection/>
 
            <StatisticsCards/>
-           <div className="flex flex-col md:flex-row justify-center gap-6 py-10">
+           <div className="flex flex-col md:flex-row justify-center gap-6 px-4 py-10">
       {teamMembers.map((member) => (
         <TeamCard key={member.name} name={member.name} role={member.role} imgSrc={member.imgSrc} />
       ))}

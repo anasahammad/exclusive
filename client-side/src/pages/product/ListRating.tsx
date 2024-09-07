@@ -9,7 +9,7 @@ interface ListRatingProps {
 
 const ListRating: React.FC<ListRatingProps> = ({ product }) => {
   return (
-    <div>
+    <div className="mt-6">
       <TopContent text="Product Review" />
       <div className="text-sm mt-2">
         {product.reviews && product.reviews.length > 0 ? (

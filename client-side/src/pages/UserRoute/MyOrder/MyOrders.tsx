@@ -3,6 +3,7 @@ import useAuth from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import OrderContent from "./OrderContent";
+import { Link } from "react-router-dom";
 
 
 const MyOrders = () => {
@@ -22,7 +23,20 @@ const MyOrders = () => {
         return <div>Loading.....</div>
     }
     
-    console.log(myOrders)
+  
+    if(!myOrders || myOrders?.length === 0){
+        return <div className="w-full h-screen">
+                <div className="flex flex-col justify-center items-center space-y-12">
+                <div className="font-inter text-5xl font-medium">
+                    Your Order list Is Empty
+                </div>
+                <div>
+                <Link to="/">
+                <button className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm">Start Shopping</button></Link>
+                </div>
+                </div>
+        </div>
+    }
     return (
         <div className="py-12">
             <div className="container mx-auto">
