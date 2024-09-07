@@ -8,7 +8,7 @@ const useOrders = () => {
     const {data: orders = [], isLoading, refetch} = useQuery({
         queryKey: ["orders"],
         queryFn: async ()=>{
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/orders`)
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/orders`, {withCredentials: true})
             return response.data;
         }
     })

@@ -1,21 +1,21 @@
 const express = require("express")
 const app = express()
 const port = process.env.PORT || 5000
+const cors = require("cors")
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
-const cors = require("cors")
-
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { v4: uuidv4 } = require('uuid');
 
-const corseOptions = {
-  origin: ["http://localhost:5173"],
+const corsOptions = {
+  origin: ["http://localhost:5173", "https://exclusive-1.web.app", "https://exclusive-server-theta.vercel.app"],
   credentials: true,
-}
+  optionsSuccessStatus: 200, 
+};
 
-app.use(cors(corseOptions))
+app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(express.json())
 

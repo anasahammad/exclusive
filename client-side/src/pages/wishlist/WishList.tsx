@@ -1,6 +1,7 @@
 import useCart from "@/hooks/useCart";
 import { Link } from "react-router-dom";
 import WishlistCard from "./WishlistCard";
+
 import TopContent from "@/components/shared/TopContent";
 import Slider from "react-slick";
 import { products } from "@/utils/Products";

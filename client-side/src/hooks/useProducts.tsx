@@ -11,7 +11,7 @@ const useProducts = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/products`);
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/products`, {withCredentials: true});
       return res.data;
     },
   });

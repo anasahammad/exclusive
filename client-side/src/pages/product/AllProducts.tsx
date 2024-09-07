@@ -22,7 +22,7 @@ const AllProducts = () => {
         categories: selectedCategories.join(","), // Make sure this is 'categories'
       });
       
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/products?${query.toString()}`);
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/products?${query.toString()}`, {withCredentials: true});
       return res.data;
     },
   });

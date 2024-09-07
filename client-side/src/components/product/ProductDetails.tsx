@@ -122,6 +122,20 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
           
         }
       }, [wishList])
+
+      useEffect(()=>{
+        setIsProductInCart(false)
+    
+        if(cartProducts){
+          const existingIndex = cartProducts.findIndex(cartItem=> cartItem._id === product._id)
+    
+          if(existingIndex > -1){
+            setIsProductInCart(true)
+    
+          }
+          
+        }
+      }, [cartProducts])
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-6">
             <ProductImage   product={product}/>
