@@ -14,7 +14,7 @@ const TopContent: React.FC<TopContentProps> = ({text, heading}) => {
                   <p className="text-[#DB4444] font-poppins font-semibold ">{text}</p>
                     
             </div>
-            <h1 className="font-inter text-4xl font-semibold mt-6">{heading}</h1>
+            <h1 className="font-inter text-2xl md:text-4xl font-semibold mt-6">{heading}</h1>
         </div>
     );
 };

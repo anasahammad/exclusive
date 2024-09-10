@@ -155,7 +155,7 @@ const FlashSaleSec = () => {
   // if (isError) return <div>Error: {error.message}</div>;
     return (
         <div className="my-12 relative">
-            <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="flex flex-col md:flex-row md:items-center gap-16">
             <TopContent text="Today's" heading="Flash Sales"/>
             <CountTimer endTime="2024-10-25T23:59:59"/>
             </div>

@@ -100,7 +100,7 @@ const CartClient = () => {
                         </div>
 
                         <div  className="flex justify-center items-center mt-4">
-                        <button onClick={handleCheckout} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins ">Procees to checkout</button>
+                        <button onClick={handleCheckout} className="px-6 md:px-12 py-[10px]  bg-[#DB4444] text-white rounded-sm font-poppins ">Proceed to checkout</button>
                         </div>
                 </div>
             </div>

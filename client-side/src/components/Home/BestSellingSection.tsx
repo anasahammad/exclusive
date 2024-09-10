@@ -16,7 +16,7 @@ const BestSellingSection = () => {
         <div className="my-12 relative">
             <div className="flex flex-col md:flex-row justify-between">
                     <TopContent heading="Best Selling Products" text="This Month" />
-<Link to="/best-selling" className="flex justify-center items-center mt-8"> <Button className="bg-[#DB4444] w-[149px]">View All</Button></Link>
+<Link to="/best-selling" className="flex justify-end md:justify-center items-center mt-8"> <Button className="bg-[#DB4444] w-[149px]">View All</Button></Link>
                 </div>
 
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 ">

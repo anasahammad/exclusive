@@ -9,6 +9,8 @@ import FeatureItem from '@/components/Home/Featured/FeatureItem';
 import { FaTruckFast } from "react-icons/fa6";
 import { BiSupport } from "react-icons/bi";
 import { FaUndoAlt } from "react-icons/fa";
+import Breadcrumb from '@/components/shared/Breadcrumb';
+
 const About = () => {
 
     const teamMembers = [
@@ -30,6 +32,9 @@ const About = () => {
       ];
     return (
         <div className='py-12'>
+            <div className='container mx-auto'>
+              <Breadcrumb/>
+            </div>
            <OurStorySection/>
 
            <StatisticsCards/>

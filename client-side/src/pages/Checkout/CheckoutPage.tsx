@@ -10,7 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import toast from "react-hot-toast";
-// import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
+
 
 const CheckoutPage: React.FC = () => {
   const stripe = useStripe();
@@ -64,8 +64,11 @@ const CheckoutPage: React.FC = () => {
     },
     onSuccess: () => {
       console.log("Order success");
-      // toast.success("Order placed successfully!");
-      localStorage.removeItem("exclusiveCart");
+      toast.success("Order Placed Successfully")
+      setTimeout(() => {
+        localStorage.removeItem("exclusiveCart");
+        window.location.reload(); 
+      }, 500); 
       navigate("/");
     },
     onError: (error: Error) => {
@@ -179,6 +182,7 @@ const CheckoutPage: React.FC = () => {
 
   return (
     <div className="container mx-auto">
+      
       <h2 className="font-inter text-4xl font-medium">Billing Details</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}

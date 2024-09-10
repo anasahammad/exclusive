@@ -10,6 +10,8 @@ import ListRating from "./ListRating";
 import AddRating from "./AddRating";
 import useAuth from "@/hooks/useAuth";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+
 
 
 const settings = {
@@ -64,7 +66,7 @@ const ProductDetailsPage = () => {
   }
     return (
         <div className="container mx-auto">
-            
+            <Breadcrumb/>
              <ProductDetails  product={product}/>
 
              <div className="my-12 relative">

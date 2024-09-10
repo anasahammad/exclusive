@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/shared/Breadcrumb";
 import { Link } from "react-router-dom";
 
 
@@ -5,6 +6,7 @@ const ErrorPage = () => {
     return (
         <div className="py-16 ">
             <div className="container mx-auto">
+            <Breadcrumb/>
                 <div className="flex flex-col justify-center space-y-[40px] md:space-y-[80px] items-center">
                     <div className="font-inter text-[50px] md:text-[110px] font-medium">404 Not Found</div>
 
