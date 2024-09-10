@@ -8,7 +8,7 @@ import SetQuantity from "./SetQuantity";
 import { FaRegHeart, FaTruckFast } from "react-icons/fa6";
 import { TbRefresh } from "react-icons/tb";
 import useCart from "@/hooks/useCart";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface ProductDetailsProps{
     product: any;
@@ -69,6 +69,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
         
     })
 
+  
 
     const handleColorSelect = useCallback((value: ColorsType)=>{
             setCartProduct((prev)=>{
@@ -146,7 +147,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({product}) => {
 
                 <div className="flex items-center gap-2">
                 <Rating value={productRatings} readOnly/>
-                <div className="font-poppins text-black text-opacity-50">({product?.reviews?.length} Reviews)</div> | <span className={`  font-poppins text-opacity-60 ${product.inStock ? 'text-[#00FF66] ' : 'text-[#DB4444]'}`}>{product.inStock ? "In Stock": "Out of Stock"}</span>
+                <div className="font-poppins text-black text-opacity-50">({product?.reviews?.length} Reviews)</div> | <span className={`  font-poppins  text-opacity-60 ${product.inStock ? 'text-[#00FF66] ' : 'text-[#DB4444]'}`}>{product.inStock ? "In Stock": "Out of Stock"}</span>
 
                 
             </div>

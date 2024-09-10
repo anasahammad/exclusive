@@ -7,9 +7,9 @@ const Slide1 = () => {
         
             <div className="bg-[#000] h-[344px] flex flex-col md:flex-row justify-between text-white">
            {/* left content */}
-           <div className="pt-[50px] pl-16 flex flex-col ">
+           <div className="pt-[50px] px-2 md:pl-16 flex flex-col ">
           <div className="flex md:gap-6 items-center ">
-           <BsApple className="text-5xl"/>
+           <BsApple className="text-2xl md:text-5xl"/>
             <p className="font-poppins">iPhone 14 Series</p>
           </div>
 
