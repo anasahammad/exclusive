@@ -135,7 +135,7 @@ async function run() {
       })
     app.get('/products', async(req, res)=>{
       const sort = req?.query.sort;
-      const category = req.query.categories;
+      const category = req.query.category;
     
       let query = {}
       let sortOptions = {}
